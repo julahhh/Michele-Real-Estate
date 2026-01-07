@@ -1,0 +1,233 @@
+/* --- Reset-ish --- */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; color: #111; }
+
+/* Push page content below fixed header */
+body {
+  padding-top: 78px; /* adjust if header height changes */
+}
+
+/* --- Hero --- */
+.hero {
+  position: relative;
+  min-height: 520px;              /* adjust as you like */
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Background image layer */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("/assets/hero.jpg"); /* <- drop your image here */
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.02);
+}
+
+/* Dark overlay like the mock */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+
+/* Content container */
+.hero__inner {
+  position: relative;
+  height: 100%;
+  padding: 46px 28px 46px;
+}
+
+/* Sticky header */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,0); /* default over hero */
+  transition: background 220ms ease, box-shadow 220ms ease, backdrop-filter 220ms ease;
+}
+
+/* When scrolled: solid-ish background */
+.site-header.is-scrolled {
+  background: rgba(10, 10, 10, 0.78);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+}
+
+/* Inner grid */
+.header-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 28px;
+}
+
+/* Header nav layout (FIX) */
+.topbar__nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.topbar__nav--left { justify-content: flex-start; }
+.topbar__nav--right { justify-content: flex-end; }
+
+/* Links */
+.navlink {
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  opacity: 0.92;
+  text-transform: uppercase;
+}
+
+.navlink:hover { opacity: 1; }
+.navlink.is-active { text-decoration: underline; text-underline-offset: 6px; }
+
+/* Center logo */
+.brand {
+  text-decoration: none;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand__mark {
+  font-size: 44px;               /* matches the tall thin look */
+  letter-spacing: 0.08em;
+  font-weight: 300;
+  line-height: 1;
+}
+
+/* Hamburger */
+.navtoggle {
+  display: none;                 /* shown on mobile */
+  margin-left: 18px;
+  border: 0;
+  background: transparent;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.navtoggle__bar {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: #fff;
+  margin: 5px 0;
+  opacity: 0.95;
+}
+
+/* --- Hero center content --- */
+.hero__content {
+  text-align: center;
+  color: #fff;
+  padding-top: 72px; /* tightened (FIX) */
+}
+
+.hero__title {
+  margin: 0;
+  font-size: 46px;
+  letter-spacing: 0.20em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.hero__subtitle {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 18px;
+  letter-spacing: 0.30em;
+  font-weight: 600;
+}
+
+/* Buttons */
+.hero__buttons {
+  margin-top: 34px;
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  height: 44px;
+  padding: 0 18px;
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.btn--ghost {
+  background: rgba(255,255,255,0.85);
+  color: #222;
+  border: 1px solid rgba(0,0,0,0.15);
+}
+
+.btn--ghost:hover {
+  background: rgba(255,255,255,0.95);
+}
+
+/* --- Mobile menu (dropdown under header) (FIX) --- */
+.mobilemenu {
+  padding: 6px 28px 14px;
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(10px);
+  display: grid;
+  gap: 10px;
+}
+
+.mobilemenu a {
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.14em;
+  font-size: 13px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255,255,255,0.18);
+}
+
+/* --- Responsive --- */
+@media (max-width: 860px) {
+  .header-inner {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .topbar__nav--left,
+  .topbar__nav--right .navlink {
+    display: none; /* hide desktop links */
+  }
+
+  .navtoggle {
+    display: inline-block;
+  }
+
+  .brand {
+    justify-self: center;
+  }
+
+  .hero__content {
+    padding-top: 64px;
+  }
+
+  .hero__title {
+    font-size: 34px;
+    letter-spacing: 0.16em;
+  }
+
+  .hero__buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .btn { min-width: 220px; }
+}

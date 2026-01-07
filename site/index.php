@@ -1,19 +1,66 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-?>
+$pageTitle = "Home";
+$activePage = "home";
 
-<?php
-  $pageTitle = "Michele Rueff & Associates";
-  $pageDesc  = "Central Florida real estate services.";
-  $activePage = "home";
-  include __DIR__ . "/partials/head.php";
-  include __DIR__ . "/partials/header.php";
+require __DIR__ . "/partials/head.php";
+require __DIR__ . "/partials/header.php";
 ?>
 
 <main>
-  <!-- Page body goes here -->
+  <h1>Welcome to Michele Rueff & Associates</h1>
+  <p>Your trusted partner in real estate.</p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
+  <p>      templine      </p>
 </main>
 
-<?php include __DIR__ . "/partials/footer.php"; ?>
+<?php require __DIR__ . "/partials/footer.php"; ?>
