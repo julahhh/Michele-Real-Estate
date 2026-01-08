@@ -22,6 +22,18 @@ require __DIR__ . "/partials/header.php";
     require __DIR__ . "/partials/bio.php";
   ?>
 
+  <?php
+    $cta = [
+      "title" => "WORK WITH US",
+      "buttonText" => "CONTACT US",
+      "buttonHref" => "/contact",
+      "bgImage" => "/assets/img/cta-work-with-us.jpg",
+      "bgAlt" => "Luxury living room interior",
+      "overlay" => 0.45,
+    ];
+    require __DIR__ . "/partials/cta.php";
+    ?>
+
 </main>
 
 <?php require __DIR__ . "/partials/footer.php"; ?>
