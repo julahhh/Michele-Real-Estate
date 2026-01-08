@@ -7,60 +7,21 @@ require __DIR__ . "/partials/header.php";
 ?>
 
 <main>
-  <h1>Welcome to Michele Rueff & Associates</h1>
-  <p>Your trusted partner in real estate.</p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
-  <p>      templine      </p>
+
+  <?php
+    $meet = [
+      "heading" => "MEET MICHELE",
+      "image" => "/assets/img/meet-michele.jpg",
+      "ctaHref" => "/about",
+      "ctaText" => "LEARN MORE",
+      "body" => [
+        "Michele Rueff is a Central Florida real estate professional serving Clermont, Orlando, and surrounding areas since 2007. She holds a Bachelor's degree in Business and Marketing from the University of Central Florida and brings a rare blend of real estate, construction, and negotiation expertise to every transaction.",
+        "She has personally bought, sold, and renovated 80+ homes, giving her deep insight into rehabs, investment strategy, interior design, and contracts. She specializes in pre-foreclosures, short sales, distressed properties, and complex transactions."
+      ],
+    ];
+    require __DIR__ . "/partials/bio.php";
+  ?>
+
 </main>
 
 <?php require __DIR__ . "/partials/footer.php"; ?>

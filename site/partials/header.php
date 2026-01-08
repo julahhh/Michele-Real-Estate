@@ -18,13 +18,16 @@
     </a>
 
     <nav class="topbar__nav topbar__nav--right" aria-label="Primary right">
-      <a class="navlink <?= $activePage === 'blog' ? 'is-active' : '' ?>" href="/blog.php">BLOG</a>
-      <a class="navlink <?= $activePage === 'contact' ? 'is-active' : '' ?>" href="/contact.php">CONTACT</a>
+      <a class="navlink <?= $activePage === 'blog' ? 'is-active' : '' ?>" href="/blog">BLOG</a>
+      <a class="navlink <?= $activePage === 'contact' ? 'is-active' : '' ?>" href="/contact">CONTACT</a>
 
-      <button class="navtoggle" type="button"
+      <button
+        class="navtoggle"
+        type="button"
         aria-label="Open menu"
         aria-expanded="false"
-        aria-controls="mobileMenu">
+        aria-controls="mobileMenu"
+      >
         <span class="navtoggle__bar"></span>
         <span class="navtoggle__bar"></span>
         <span class="navtoggle__bar"></span>
@@ -34,11 +37,11 @@
   </div>
 
   <div id="mobileMenu" class="mobilemenu" hidden>
-    <a href="/about.php">ABOUT</a>
-    <a href="/buy.php">BUY</a>
-    <a href="/sell.php">SELL</a>
-    <a href="/blog.php">BLOG</a>
-    <a href="/contact.php">CONTACT</a>
+    <a href="/about">ABOUT</a>
+    <a href="/buy">BUY</a>
+    <a href="/sell">SELL</a>
+    <a href="/blog">BLOG</a>
+    <a href="/contact">CONTACT</a>
   </div>
 </header>
 
@@ -68,17 +71,7 @@
     const btn = document.querySelector('.navtoggle');
     const menu = document.getElementById('mobileMenu');
 
-    // Safe guards (so it won't error on pages without the button/menu)
-    if (btn && menu) {
-      btn.addEventListener('click', function () {
-        const expanded = this.getAttribute('aria-expanded') === 'true';
-        this.setAttribute('aria-expanded', String(!expanded));
-        if (menu.hasAttribute('hidden')) menu.removeAttribute('hidden');
-        else menu.setAttribute('hidden', '');
-      });
-    }
-
-    // Sticky header "scrolled" state
+    // Header scroll state
     if (header) {
       const setScrolled = () => {
         if (window.scrollY > 30) header.classList.add('is-scrolled');
@@ -87,5 +80,42 @@
       setScrolled();
       window.addEventListener('scroll', setScrolled, { passive: true });
     }
+
+    // Mobile menu
+    if (!btn || !menu) return;
+
+    const closeMenu = () => {
+      btn.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('hidden', '');
+    };
+
+    const openMenu = () => {
+      btn.setAttribute('aria-expanded', 'true');
+      menu.removeAttribute('hidden');
+    };
+
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      if (isOpen) closeMenu();
+      else openMenu();
+    });
+
+    // Close when a menu link is clicked
+    menu.addEventListener('click', (e) => {
+      if (e.target && e.target.tagName === 'A') closeMenu();
+    });
+
+    // Close on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // Close when resizing to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 860) closeMenu();
+    });
+
+    // Ensure it starts closed on load
+    closeMenu();
   })();
 </script>
