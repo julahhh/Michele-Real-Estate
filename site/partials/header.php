@@ -14,7 +14,11 @@
     </nav>
 
     <a class="brand" href="/" aria-label="Home">
-      <span class="brand__mark">MR</span>
+      <img
+        src="/assets/img/brand-logo.png"
+        alt="Michele Rueff & Associates"
+        class="brand__img"
+      >
     </a>
 
     <nav class="topbar__nav topbar__nav--right" aria-label="Primary right">
