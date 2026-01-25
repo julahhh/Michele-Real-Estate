@@ -1,7 +1,10 @@
 <?php
   // Allow per-site overrides
   $footer = $footer ?? [
-    "brand" => "MICHELE RUEFF & ASSOCIATES",
+    "brand" => [
+      "main" => "MICHELE RUEFF",
+      "sub"  => "& ASSOCIATES"
+    ],
     "phoneLabel" => "321.948.4332",
     "phoneHref" => "+13219484332",
     "emailLabel" => "michele.rueff@exprealty.com",
@@ -11,7 +14,8 @@
     "bottomNote" => ""                   // optional: "© 2026 Michele Rueff..."
   ];
 
-  $brand = htmlspecialchars($footer["brand"] ?? "");
+ $brandMain = htmlspecialchars($footer["brand"]["main"] ?? "");
+  $brandSub  = htmlspecialchars($footer["brand"]["sub"] ?? "");
   $phoneLabel = htmlspecialchars($footer["phoneLabel"] ?? "");
   $phoneHref = htmlspecialchars($footer["phoneHref"] ?? "");
   $emailLabel = htmlspecialchars($footer["emailLabel"] ?? "");
@@ -24,8 +28,10 @@
 
 <footer class="site-footer">
   <div class="site-footer__inner">
-
-    <div class="site-footer__brand"><?= $brand ?></div>
+    <div class="site-footer__brand">
+      <span class="brand-line brand-line--main"><?= $brandMain ?></span>
+      <span class="brand-line brand-line--sub"><?= $brandSub ?></span>
+    </div>
 
     <div class="site-footer__contact">
       <a class="site-footer__link" href="tel:<?= $phoneHref ?>"><?= $phoneLabel ?></a>
