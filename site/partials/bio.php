@@ -8,7 +8,7 @@ $bio = $bio ?? [
   "ctaText" => "LEARN MORE",
   "body" => [
     "Michele Rueff is a Central Florida real estate professional serving Clermont, Orlando, and surrounding areas since 2007. She holds a Bachelor's degree in Business and Marketing from the University of Central Florida and brings a rare blend of real estate, construction, and negotiation expertise to every transaction.",
-    "She has personally bought, sold, and renovated 80+ homes, giving her deep insight into rehabs, investment strategy, interior design, and contracts. She specializes in pre-foreclosures, short sales, distressed properties, and complex transactions."
+    "She has personally bought, sold, and renovated 80+ homes, giving her deep insight into rehabs, investment strategy, interior design, and contracts. She specializes in pre-foreclosures, short sales, distressed properties, and complex transactions. Michele is a member of Florida Realtors and the National Association of Realtors and is proud to be with eXp-Winning Realty in Clermont, Florida.",
   ],
 ];
 
