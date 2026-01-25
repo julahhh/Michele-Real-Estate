@@ -22,6 +22,8 @@ require __DIR__ . "/partials/header.php";
     require __DIR__ . "/partials/bio.php";
   ?>
 
+  <?php require __DIR__ . "/partials/testimonials.php";?>
+
   <?php
     $cta = [
       "title" => "WORK WITH US",
