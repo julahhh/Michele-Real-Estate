@@ -366,6 +366,137 @@ main > section:first-child {
 }
 
 
+/* --- Quick Links Tiles --- */
+.ql {
+  background: #fff;
+  padding: 14px 0 10px;
+}
+
+.ql__inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.ql__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 55px;
+}
+
+/* framed tile */
+.ql__card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+  background: #eee;
+  transition: box-shadow 420ms cubic-bezier(.22,.61,.36,1),
+              transform 420ms cubic-bezier(.22,.61,.36,1);
+  will-change: transform, box-shadow;
+
+  aspect-ratio: 3.5/4; 
+}
+
+.ql__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   
+  display: block;
+  transform: scale(1);
+  transition: transform 700ms cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+}
+
+.ql__overlay{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.70),
+    rgba(0,0,0,0.35),
+    rgba(0,0,0,0.05)
+  );
+  pointer-events: none;
+
+  opacity: 0.85;
+  transform: translateY(0);
+  transition: opacity 520ms cubic-bezier(.22,.61,.36,1),
+              transform 520ms cubic-bezier(.22,.61,.36,1);
+  will-change: opacity, transform;
+}
+
+/* --- Hover state --- */
+.ql__card:hover {
+  box-shadow:
+    0 30px 60px rgba(0,0,0,0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.18);
+  transform: translateY(-2px);
+}
+
+.ql__card:hover .ql__img {
+  transform: scale(1.08); /* optical, not aggressive */
+}
+
+.ql__card:hover .ql__overlay {
+  opacity: 1;
+  transform: translateY(-10px); /* gradient lifts */
+}
+
+.ql__card:hover .ql__label {
+  transform: translateY(-4px);
+  letter-spacing: 0.26em;
+  opacity: 1;
+}
+
+.ql__card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255,255,255,0.12),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 420ms cubic-bezier(.22,.61,.36,1);
+  pointer-events: none;
+}
+
+.ql__card:hover::after {
+  opacity: 1;
+}
+
+/* label */
+.ql__label{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 12px;
+  z-index: 2;
+
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 0.5em;
+  font-weight: 525;
+  text-transform: uppercase;
+
+  transition: transform 280ms ease, letter-spacing 280ms ease;
+}
+
+.ql__card:hover .ql__label {
+  transform: translateY(-2px);
+  letter-spacing: 0.75em;
+}
+
+@media (max-width: 900px) {
+  .ql__inner { padding: 0 28px; }
+  .ql__grid { grid-template-columns: 1fr; gap: 14px; }
+  .ql__img { height: 190px; }
+}
+
+
 /* --- Testimonials --- */
 .tstm {
   position: relative;
