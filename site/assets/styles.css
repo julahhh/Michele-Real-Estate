@@ -331,7 +331,7 @@ main > section:first-child {
    ========================================================================== */
 
 .ql {
-  background: #fff;
+  background: #f3efe8;
   padding: clamp(40px, 6vw, 72px) 0;
 }
 
