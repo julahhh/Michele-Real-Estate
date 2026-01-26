@@ -54,5 +54,7 @@
   </div>
 </footer>
 
+<?php require __DIR__ . "/contact-modal.php"; ?>
+<script src="/assets/main.js" defer></script>
 </body>
 </html>

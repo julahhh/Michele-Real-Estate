@@ -10,12 +10,9 @@ $cta = $cta ?? [
 
 $title = htmlspecialchars((string)($cta["title"] ?? "WORK WITH US"));
 $buttonText = htmlspecialchars((string)($cta["buttonText"] ?? "CONTACT US"));
-$buttonHref = htmlspecialchars((string)($cta["buttonHref"] ?? "#"));
 $bgImage = htmlspecialchars((string)($cta["bgImage"] ?? ""));
 $bgAlt = htmlspecialchars((string)($cta["bgAlt"] ?? ""));
-$overlay = (float)($cta["overlay"] ?? 0.45);
-if ($overlay < 0) $overlay = 0;
-if ($overlay > 1) $overlay = 1;
+$overlay = max(0, min(1, (float)($cta["overlay"] ?? 0.45)));
 ?>
 
 <section class="cta">
@@ -25,7 +22,15 @@ if ($overlay > 1) $overlay = 1;
   <div class="cta__inner">
     <div class="cta__content">
       <h2 class="cta__title"><?= $title ?></h2>
-      <a class="cta__btn" href="<?= $buttonHref ?>"><?= $buttonText ?></a>
+
+      <button
+        class="cta__btn"
+        type="button"
+        data-modal-open="contact"
+        aria-label="Open contact form"
+      >
+        <?= $buttonText ?>
+      </button>
     </div>
   </div>
 </section>

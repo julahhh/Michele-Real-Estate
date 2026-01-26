@@ -1,5 +1,5 @@
 <?php
-$pageTitle = "Home";
+$pageTitle = "Buy & Sell with Michele - Your Trusted Real Estate Agent";
 $activePage = "home";
 
 require __DIR__ . "/partials/head.php";
