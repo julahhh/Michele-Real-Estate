@@ -8,6 +8,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  background: #f3efe8;
 }
 
 body {
@@ -735,6 +736,7 @@ main > section:first-child {
   max-width: 920px;
   margin: 0 auto;
   padding: 60px 28px;
+  background: #f3efe8;
 }
 
 .notice{
