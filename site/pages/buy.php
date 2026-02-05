@@ -9,19 +9,19 @@ $pageTitle = "Buy";
 $activePage = "buy";
 
 // Global layout includes
-require __DIR__ . "/partials/head.php";
-require __DIR__ . "/partials/header.php";
+require ROOT_PATH . "/partials/head.php";
+require ROOT_PATH . "/partials/header.php";
 
 ?>
 
 <main>
   <!-- Featured Properties section -->
-  <?php require __DIR__ . "/partials/featured-properties.php"; ?>
+  <?php require ROOT_PATH . "/partials/featured-properties.php"; ?>
   <!-- Call to Action section -->
-  <?php require __DIR__ . "/partials/cta.php";?>
+  <?php require ROOT_PATH . "/partials/cta.php";?>
 </main>
 
 <?php 
 // Site footer (global)
-require __DIR__ . "/partials/footer.php";
+require ROOT_PATH . "/partials/footer.php";
 ?>
