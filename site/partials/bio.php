@@ -1,5 +1,10 @@
 <?php
-// Allow override via $bio (optional)
+/* =====================================================
+Bio/Meet Section Partial
+- Displays agent biography with image, text, and CTA.
+=====================================================*/
+
+// Default bio data (can be overridden)
 $bio = $bio ?? [
   "heading" => "MEET MICHELE",
   "image" => "/assets/img/meet-michele.jpg",
@@ -12,7 +17,7 @@ $bio = $bio ?? [
   ],
 ];
 
-// Safety to avoid null -> htmlspecialchars warnings
+// Make sure $bio is an array and merge with defaults
 $bio = array_merge([
   "heading" => "",
   "image" => "",
@@ -22,8 +27,9 @@ $bio = array_merge([
   "body" => [],
 ], is_array($bio) ? $bio : []);
 
+// Extract and sanitize individual fields
 $heading  = htmlspecialchars((string)$bio["heading"]);
-$image    = htmlspecialchars((string)$bio["image"]);
+$image = htmlspecialchars($bio["image"], ENT_QUOTES, 'UTF-8');
 $imageAlt = htmlspecialchars((string)$bio["imageAlt"]);
 $ctaHref  = htmlspecialchars((string)$bio["ctaHref"]);
 $ctaText  = htmlspecialchars((string)$bio["ctaText"]);
@@ -33,19 +39,25 @@ $body     = is_array($bio["body"]) ? $bio["body"] : [];
 <section class="meet">
   <div class="meet__inner">
 
+    <!-- Agent Image -->
     <div class="meet__media">
       <img class="meet__img" src="<?= $image ?>" alt="<?= $imageAlt ?>">
     </div>
 
+    <!-- Agent Biography Content -->
     <div class="meet__content">
+
+      <!-- Agent Name -->
       <h2 class="meet__title"><?= $heading ?></h2>
 
+      <!-- Agent Biography Text -->
       <div class="meet__text">
         <?php foreach ($body as $p): ?>
           <p><?= htmlspecialchars((string)$p) ?></p>
         <?php endforeach; ?>
       </div>
 
+      <!-- Call to Action Button -->
       <a class="btn btn--light" href="<?= $ctaHref ?>"><?= $ctaText ?></a>
     </div>
 

@@ -1,6 +1,16 @@
-/* ==========================================================================
+/* =============================================================================
+   Global Stylesheet — Michele Rueff & Associates
+   ---------------------------------------------------------------------------
+   Purpose:
+   - Defines global layout + component styling for the modular PHP template
+   - Sections are organized by component/partial (header, hero, tiles, etc.)
+   - Responsive rules live near the component they affect (and a final block)
+   ============================================================================= */
+
+
+/* ====================================================================================================================================================
    Base / Reset
-   ========================================================================== */
+   ==================================================================================================================================================== */
 
 * { box-sizing: border-box; }
 
@@ -8,7 +18,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: #f3efe8;
+  background: #f3efe8; /* Site Background Color */
 }
 
 body {
@@ -16,14 +26,14 @@ body {
   color: #111;
 }
 
-/* Give breathing room to the first section inside main (not the hero) */
+/* Give padding to the first section inside main (not the hero) */
 main > section:first-child {
   padding-top: 70px;
 }
 
-/* ==========================================================================
+/* ====================================================================================================================================================
    Header / Navigation
-   ========================================================================== */
+   ==================================================================================================================================================== */
 
 .site-header {
   position: fixed;
@@ -31,7 +41,10 @@ main > section:first-child {
   left: 0;
   right: 0;
   z-index: 9999;
+
+  /* Initially transparent, turns solid on scroll */
   background: transparent;
+  
   transition: background 220ms ease, box-shadow 220ms ease, backdrop-filter 220ms ease;
 }
 
@@ -45,6 +58,7 @@ main > section:first-child {
   opacity: 0.9;
 }
 
+/* When scrolled, header uses a solid background */
 .site-header.is-scrolled::before {
   opacity: 0;
 }
@@ -75,6 +89,7 @@ main > section:first-child {
 .topbar__nav--left { justify-content: flex-start; }
 .topbar__nav--right { justify-content: flex-end; }
 
+/* Header links */
 .navlink {
   color: #fff;
   text-decoration: none;
@@ -91,6 +106,7 @@ main > section:first-child {
   text-underline-offset: 6px;
 }
 
+/* Center brand/logo */
 .brand {
   display: inline-flex;
   align-items: center;
@@ -104,6 +120,7 @@ main > section:first-child {
   display: block;
 }
 
+/* Navigation toggle (mobile) */
 .navtoggle {
   display: none;
   margin-left: 18px;
@@ -138,13 +155,14 @@ main > section:first-child {
   text-transform: uppercase;
 }
 
+/* Hide mobile menu on desktop screens */
 @media (min-width: 861px) {
   .mobilemenu { display: none !important; }
 }
 
-/* ==========================================================================
+/* ====================================================================================================================================================
    Hero
-   ========================================================================== */
+   ==================================================================================================================================================== */
 
 .hero {
   position: relative;
@@ -153,6 +171,7 @@ main > section:first-child {
   overflow: hidden;
 }
 
+/* Background image */
 .hero__bg {
   position: absolute;
   inset: 0;
@@ -163,6 +182,7 @@ main > section:first-child {
   z-index: 0;
 }
 
+/* Add a dark overlay */
 .hero__overlay {
   position: absolute;
   inset: 0;
@@ -170,6 +190,7 @@ main > section:first-child {
   z-index: 0;
 }
 
+/* Content */
 .hero__inner {
   position: relative;
   z-index: 1;
@@ -180,7 +201,7 @@ main > section:first-child {
 .hero__content {
   text-align: center;
   color: #fff;
-  padding-top: 100px;
+  padding-top: 100px; /* Push content under header */
 }
 
 .hero__title {
@@ -206,23 +227,26 @@ main > section:first-child {
   gap: 26px;
 }
 
-/* ==========================================================================
-   Buttons
-   ========================================================================== */
+/* ====================================================================================================================================================
+   Buttons (global)
+   ==================================================================================================================================================== */
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
   min-width: 180px;
   height: 44px;
   padding: 0 18px;
+
   text-decoration: none;
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
+/* Ghost Button */
 .btn--ghost {
   background: rgba(255,255,255,0.85);
   color: #222;
@@ -255,9 +279,9 @@ main > section:first-child {
   background: rgba(255,255,255,0.98);
 }
 
-/* ==========================================================================
-   Sections: Biography
-   ========================================================================== */
+/* ====================================================================================================================================================
+  Biography
+  ==================================================================================================================================================== */
 
 .meet {
   background: #000;
@@ -327,9 +351,9 @@ main > section:first-child {
   }
 }
 
-/* ==========================================================================
-   Sections: Quick Links Tiles
-   ========================================================================== */
+/* ====================================================================================================================================================
+  Quick Links
+  ==================================================================================================================================================== */
 
 .ql {
   background: #f3efe8;
@@ -349,11 +373,12 @@ main > section:first-child {
   gap: 55px;
 }
 
-/* Tile card */
+/* Tile card container */
 .ql__card {
   position: relative;
   display: block;
   width: 100%;
+
   text-decoration: none;
   overflow: hidden;
   background: #eee;
@@ -364,6 +389,7 @@ main > section:first-child {
   will-change: transform, box-shadow;
 }
 
+/*Image fills card without stretching */
 .ql__img {
   width: 100%;
   height: 100%;
@@ -393,7 +419,7 @@ main > section:first-child {
   will-change: opacity, transform;
 }
 
-/* Sheen */
+/* Hover Highlight */
 .ql__card::after {
   content: "";
   position: absolute;
@@ -408,7 +434,7 @@ main > section:first-child {
   pointer-events: none;
 }
 
-/* Label */
+/* Tile Label */
 .ql__label {
   position: absolute;
   left: 0;
@@ -426,7 +452,7 @@ main > section:first-child {
   transition: transform 280ms ease, letter-spacing 280ms ease;
 }
 
-/* Hover */
+/* Hover Animation */
 .ql__card:hover {
   box-shadow:
     0 30px 60px rgba(0,0,0,0.18),
@@ -448,9 +474,9 @@ main > section:first-child {
   .ql__grid { grid-template-columns: 1fr; gap: 14px; }
 }
 
-/* ==========================================================================
-   Sections: Testimonials
-   ========================================================================== */
+/* ====================================================================================================================================================
+  Testimonials
+  ==================================================================================================================================================== */
 
 .tstm {
   position: relative;
@@ -459,15 +485,19 @@ main > section:first-child {
   overflow: hidden;
 }
 
+/* Watermark Behing Testimonials */
 .tstm__watermark {
   position: absolute;
   inset: 0;
+
   display: grid;
   place-items: center;
+
   font-size: 260px;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: rgba(0,0,0,0.06);
+
   transform: translateY(10px);
   pointer-events: none;
   user-select: none;
@@ -476,9 +506,11 @@ main > section:first-child {
 .tstm__inner {
   position: relative;
   z-index: 1;
+
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 40px;
+
   text-align: center;
 }
 
@@ -495,6 +527,7 @@ main > section:first-child {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 70px;
+
   align-items: start;
   text-align: left;
 }
@@ -541,9 +574,9 @@ main > section:first-child {
   }
 }
 
-/* ==========================================================================
-   Sections: Featured Properties
-   ========================================================================== */
+/* ====================================================================================================================================================
+  Featured Properties
+  ==================================================================================================================================================== */
 
 .fp {
   background: #000;
@@ -572,10 +605,12 @@ main > section:first-child {
   gap: 22px;
 }
 
+/* Card Container */
 .fp__card {
   display: block;
   text-decoration: none;
   color: inherit;
+
   border: 1px solid rgba(255,255,255,0.18);
   background: rgba(0,0,0,0.45);
   overflow: hidden;
@@ -585,6 +620,7 @@ main > section:first-child {
               border-color 420ms cubic-bezier(.22,.61,.36,1);
 }
 
+/* Image container */
 .fp__media {
   position: relative;
   aspect-ratio: 16 / 10;
@@ -600,6 +636,7 @@ main > section:first-child {
   transition: transform 700ms cubic-bezier(.22,.61,.36,1);
 }
 
+/* property info container */
 .fp__meta {
   padding: 18px 18px 20px;
   border-top: 1px solid rgba(255,255,255,0.12);
@@ -629,6 +666,7 @@ main > section:first-child {
   color: #fff;
 }
 
+/* Hover Effects */
 .fp__card:hover {
   transform: translateY(-2px);
   border-color: rgba(255,255,255,0.35);
@@ -644,9 +682,9 @@ main > section:first-child {
   .fp__inner { padding: 0 28px; }
 }
 
-/* ==========================================================================
-   Sections: CTA
-   ========================================================================== */
+/* ====================================================================================================================================================
+  Call To Action (CTA)
+  ==================================================================================================================================================== */
 
 .cta {
   position: relative;
@@ -729,9 +767,11 @@ main > section:first-child {
 
 
 
-/* ==========================================================================
-   Section: Contact Form
-   ========================================================================== */
+/* ====================================================================================================================================================
+  Contact Page, Modal, and Form
+  ==================================================================================================================================================== */
+
+/*page wrapper */
 .page__inner{
   max-width: 920px;
   margin: 0 auto;
@@ -739,6 +779,7 @@ main > section:first-child {
   background: #f3efe8;
 }
 
+/* Notice Messages (Pass/Fail)*/
 .notice{
   padding: 14px 16px;
   margin: 0 0 18px;
@@ -747,6 +788,7 @@ main > section:first-child {
 .notice--success{ background: rgba(0,128,0,0.08); }
 .notice--error{ background: rgba(200,0,0,0.08); }
 
+/* Contact Form Container*/
 .contact-form{
   background: #fff;
   border: 1px solid rgba(0,0,0,0.12);
@@ -785,6 +827,7 @@ main > section:first-child {
   font: inherit;
 }
 
+/* submit button */
 .contact-form__btn{
   margin-top: 14px;
   height: 40px;
@@ -798,9 +841,10 @@ main > section:first-child {
   cursor: pointer;
 }
 
+/* hide honeypot field */
 .hp{ display:none; }
 
-/* Modal */
+/* Modal Shell */
 .modal{
   position: fixed;
   inset: 0;
@@ -808,8 +852,10 @@ main > section:first-child {
   z-index: 10000;
 }
 
+/* Show modal when open */
 .modal.is-open{ display: block; }
 
+/* Modal Backdrop */
 .modal__backdrop{
   position: absolute;
   inset: 0;
@@ -839,9 +885,9 @@ main > section:first-child {
 }
 
 
-/* ==========================================================================
-   Footer
-   ========================================================================== */
+/* ====================================================================================================================================================
+  Footer
+  ==================================================================================================================================================== */
 
 .site-footer {
   background: #000;
@@ -856,6 +902,7 @@ main > section:first-child {
   text-align: center;
 }
 
+/* Brand/Logo */
 .site-footer__brand {
   display: flex;
   flex-direction: column;
@@ -870,7 +917,7 @@ main > section:first-child {
   color: #fff;
 }
 
-/* Main name */
+/* brand name : "Michele Rueff" */
 .brand-line--main {
   font-size: 24px;
   font-weight: 400;
@@ -878,7 +925,7 @@ main > section:first-child {
   margin-bottom: 6px;
 }
 
-/* Sub line */
+/* brand sub line : "& Associstes" */
 .brand-line--sub {
   font-size: 12px;
   font-weight: 300;
@@ -886,6 +933,7 @@ main > section:first-child {
   opacity: 0.9;
 }
 
+/* Contact Row */
 .site-footer__contact {
   font-size: 13px;
   letter-spacing: 0.06em;
@@ -912,6 +960,7 @@ main > section:first-child {
   opacity: 0.55;
 }
 
+/* Brokerage Logo */
 .site-footer__brokerage {
   display: flex;
   justify-content: center;
@@ -934,6 +983,7 @@ main > section:first-child {
   opacity: 0.95;
 }
 
+/* Footer Copyright Note */
 .site-footer__note {
   margin-top: 18px;
   font-size: 12px;
@@ -941,9 +991,9 @@ main > section:first-child {
 }
 
 
-/* ==========================================================================
-   Utility
-   ========================================================================== */
+/* ====================================================================================================================================================
+  Utility
+  ==================================================================================================================================================== */
 
 .container {
   max-width: 1100px;
@@ -952,15 +1002,16 @@ main > section:first-child {
 }
 
 
-/* ==========================================================================
+/* ====================================================================================================================================================
    Responsive: Header/Hero
-   ========================================================================== */
+   ==================================================================================================================================================== */
 
 @media (max-width: 860px) {
   .header-inner {
     grid-template-columns: auto 1fr auto;
   }
 
+  /* Hide desktop links; show hamburger instead */
   .topbar__nav--left,
   .topbar__nav--right .navlink {
     display: none;
