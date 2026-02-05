@@ -41,7 +41,9 @@ Testimonials Partial
 <section class="tstm">
 
   <!-- Decorative background watermark -->
-  <div class="tstm__watermark" aria-hidden="true"><?= $watermark ?></div>
+  <div class="tstm__watermark">
+    <img src="/assets/img/brand-logo.png" alt="" />
+  </div>
 
   <div class="tstm__inner">
 
