@@ -1,0 +1,42 @@
+/* =============================================================================
+Variables and Global Styles
+   ---------------------------------------------------------------------------
+   Purpose:
+    - Define CSS variables for consistent theming across the site.
+    - Set global styles for typography, colors, and layout.
+    - Holds color variables, font settings, resets, and base styles for elements.
+   ============================================================================= */
+
+
+/* ====================================================================================================================================================
+   Color Variables
+   ==================================================================================================================================================== */
+:root {
+  --color-bg: #f3efe8;
+  --color-text: #111;
+  --color-black: #000;  
+  --color-white: #fff;
+}
+
+/* ====================================================================================================================================================
+   Base / Reset
+   ==================================================================================================================================================== */
+
+* { box-sizing: border-box; }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg) /* Site Background Color */
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111;
+}
+
+/* Give padding to the first section inside main (not the hero) */
+main > section:first-child {
+  padding-top: 70px;
+}

@@ -1,0 +1,10 @@
+/* =============================================================================
+Main CSS
+   ---------------------------------------------------------------------------
+   Purpose:
+    - Serve as the main stylesheet that imports all other CSS files (global, layout, components).
+   ============================================================================= */
+
+@import url("./global.css");
+@import url("./layout.css");
+@import url("./components.css");

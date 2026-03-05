@@ -1,235 +1,17 @@
 /* =============================================================================
-   Global Stylesheet — Michele Rueff & Associates
+Components CSS
    ---------------------------------------------------------------------------
    Purpose:
-   - Defines global layout + component styling for the modular PHP template
-   - Sections are organized by component/partial (header, hero, tiles, etc.)
-   - Responsive rules live near the component they affect (and a final block)
+    - Define styles for reusable components across the website, such as buttons, cards, forms, and navigation elements.
+    - Ensure consistency in design and functionality for these components.
+    
+    Components:
+    - Buttons, cards, contact forms, modal, testimonials, navigation bar, cta
    ============================================================================= */
 
-
 /* ====================================================================================================================================================
-   Base / Reset
-   ==================================================================================================================================================== */
-
-* { box-sizing: border-box; }
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-  background: #f3efe8; /* Site Background Color */
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #111;
-}
-
-/* Give padding to the first section inside main (not the hero) */
-main > section:first-child {
-  padding-top: 70px;
-}
-
-/* ====================================================================================================================================================
-   Header / Navigation
-   ==================================================================================================================================================== */
-
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9999;
-
-  /* Initially transparent, turns solid on scroll */
-  background: transparent;
-  
-  transition: background 220ms ease, box-shadow 220ms ease, backdrop-filter 220ms ease;
-}
-
-/* Gradient overlay to fade header into hero */
-.site-header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0));
-  pointer-events: none;
-  opacity: 0.9;
-}
-
-/* When scrolled, header uses a solid background */
-.site-header.is-scrolled::before {
-  opacity: 0;
-}
-
-.site-header.is-scrolled {
-  background: rgba(10,10,10,0.78);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.18);
-}
-
-.header-inner {
-  position: relative;
-  z-index: 1;
-
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 12px;
-  padding: 20px 60px;
-}
-
-.topbar__nav {
-  display: flex;
-  align-items: center;
-  gap: 70px;
-}
-
-.topbar__nav--left { justify-content: flex-start; }
-.topbar__nav--right { justify-content: flex-end; }
-
-/* Header links */
-.navlink {
-  color: #fff;
-  text-decoration: none;
-  font-size: 15px;
-  letter-spacing: 0.18em;
-  opacity: 0.9;
-  text-transform: uppercase;
-}
-
-.navlink:hover { opacity: 1; }
-
-.navlink.is-active {
-  text-decoration: underline;
-  text-underline-offset: 6px;
-}
-
-/* Center brand/logo */
-.brand {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-
-.brand__img {
-  height: 55px;
-  width: auto;
-  display: block;
-}
-
-/* Navigation toggle (mobile) */
-.navtoggle {
-  display: none;
-  margin-left: 18px;
-  border: 0;
-  background: transparent;
-  padding: 8px;
-  cursor: pointer;
-}
-
-.navtoggle__bar {
-  display: block;
-  width: 26px;
-  height: 2px;
-  background: #fff;
-  margin: 5px 0;
-  opacity: 0.95;
-}
-
-/* Mobile menu */
-.mobilemenu:not([hidden]) {
-  display: grid;
-  gap: 10px;
-}
-
-.mobilemenu a {
-  color: #fff;
-  text-decoration: none;
-  letter-spacing: 0.14em;
-  font-size: 13px;
-  padding: 12px 0;
-  border-top: 1px solid rgba(255,255,255,0.18);
-  text-transform: uppercase;
-}
-
-/* Hide mobile menu on desktop screens */
-@media (min-width: 861px) {
-  .mobilemenu { display: none !important; }
-}
-
-/* ====================================================================================================================================================
-   Hero
-   ==================================================================================================================================================== */
-
-.hero {
-  position: relative;
-  min-height: 600px;
-  width: 100%;
-  overflow: hidden;
-}
-
-/* Background image */
-.hero__bg {
-  position: absolute;
-  inset: 0;
-  background-image: url("/assets/img/hero.jpg");
-  background-size: cover;
-  background-position: top center;
-  transform: scale(1);
-  z-index: 0;
-}
-
-/* Add a dark overlay */
-.hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  z-index: 0;
-}
-
-/* Content */
-.hero__inner {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  padding: 100px 28px 0;
-}
-
-.hero__content {
-  text-align: center;
-  color: #fff;
-  padding-top: 100px; /* Push content under header */
-}
-
-.hero__title {
-  margin: 0;
-  font-size: 46px;
-  letter-spacing: 0.20em;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.hero__subtitle {
-  display: inline-block;
-  margin-top: 14px;
-  font-size: 18px;
-  letter-spacing: 0.30em;
-  font-weight: 600;
-}
-
-.hero__buttons {
-  margin-top: 34px;
-  display: flex;
-  justify-content: center;
-  gap: 26px;
-}
-
-/* ====================================================================================================================================================
-   Buttons (global)
-   ==================================================================================================================================================== */
+Buttons
+==================================================================================================================================================== */
 
 .btn {
   display: inline-flex;
@@ -277,6 +59,116 @@ main > section:first-child {
 
 .btn--light:hover {
   background: rgba(255,255,255,0.98);
+}
+
+
+/* ====================================================================================================================================================
+  Testimonials
+  ==================================================================================================================================================== */
+
+.tstm {
+  position: relative;
+  background: #f3efe8;
+  padding: 60px 0 60px;
+  overflow: hidden;
+}
+
+/* Watermark Behind Testimonials */
+.tstm__watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+.tstm__watermark img {
+  width: min(600px, 70vw);
+  height: auto;
+  display: block;
+
+  opacity: 0.5;
+  filter: blur(0.6px);
+  transform: translateY(20px);
+}
+
+.tstm__inner {
+  position: relative;
+  z-index: 1;
+
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 40px;
+
+  text-align: center;
+}
+
+.tstm__title {
+  margin: 0 0 34px;
+  font-size: 30px;
+  letter-spacing: 0.10em;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.tstm__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 70px;
+
+  align-items: start;
+  text-align: left;
+}
+
+.tstm__card { position: relative; }
+
+.tstm__quote {
+  font-size: 44px;
+  line-height: 1;
+  color: #111;
+  margin-bottom: 12px;
+}
+
+.tstm__text {
+  margin: 0 0 18px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: rgba(0,0,0,0.82);
+  max-width: 500px;
+}
+
+.tstm__name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111;
+}
+
+@media (max-width: 980px) {
+  .tstm__grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    text-align: center;
+  }
+
+  .tstm__text {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 560px;
+  }
+
+  .tstm__quote,
+  .tstm__name {
+    text-align: center;
+  }
 }
 
 /* ====================================================================================================================================================
@@ -475,115 +367,6 @@ main > section:first-child {
 }
 
 /* ====================================================================================================================================================
-  Testimonials
-  ==================================================================================================================================================== */
-
-.tstm {
-  position: relative;
-  background: #f3efe8;
-  padding: 60px 0 60px;
-  overflow: hidden;
-}
-
-/* Watermark Behind Testimonials */
-.tstm__watermark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  pointer-events: none;
-  z-index: 0;
-}
-
-
-.tstm__watermark img {
-  width: min(600px, 70vw);
-  height: auto;
-  display: block;
-
-  opacity: 0.5;
-  filter: blur(0.6px);
-  transform: translateY(20px);
-}
-
-.tstm__inner {
-  position: relative;
-  z-index: 1;
-
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 40px;
-
-  text-align: center;
-}
-
-.tstm__title {
-  margin: 0 0 34px;
-  font-size: 30px;
-  letter-spacing: 0.10em;
-  font-weight: 300;
-  text-transform: uppercase;
-  color: #111;
-}
-
-.tstm__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 70px;
-
-  align-items: start;
-  text-align: left;
-}
-
-.tstm__card { position: relative; }
-
-.tstm__quote {
-  font-size: 44px;
-  line-height: 1;
-  color: #111;
-  margin-bottom: 12px;
-}
-
-.tstm__text {
-  margin: 0 0 18px;
-  font-size: 13px;
-  line-height: 1.8;
-  color: rgba(0,0,0,0.82);
-  max-width: 500px;
-}
-
-.tstm__name {
-  font-size: 13px;
-  font-weight: 700;
-  color: #111;
-}
-
-@media (max-width: 980px) {
-  .tstm__grid {
-    grid-template-columns: 1fr;
-    gap: 34px;
-    text-align: center;
-  }
-
-  .tstm__text {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 560px;
-  }
-
-  .tstm__quote,
-  .tstm__name {
-    text-align: center;
-  }
-}
-
-/* ====================================================================================================================================================
   Featured Properties
   ==================================================================================================================================================== */
 
@@ -774,8 +557,6 @@ main > section:first-child {
   }
 }
 
-
-
 /* ====================================================================================================================================================
   Contact Page, Modal, and Form
   ==================================================================================================================================================== */
@@ -891,163 +672,4 @@ main > section:first-child {
 
 @media (max-width: 820px){
   .contact-form__grid{ grid-template-columns: 1fr; }
-}
-
-
-/* ====================================================================================================================================================
-  Footer
-  ==================================================================================================================================================== */
-
-.site-footer {
-  background: #000;
-  color: #fff;
-  padding: 54px 0 46px;
-}
-
-.site-footer__inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 28px;
-  text-align: center;
-}
-
-/* Brand/Logo */
-.site-footer__brand {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 1;
-  margin-bottom: 22px;
-}
-
-.brand-line {
-  display: block;
-  text-transform: uppercase;
-  color: #fff;
-}
-
-/* brand name : "Michele Rueff" */
-.brand-line--main {
-  font-size: 24px;
-  font-weight: 400;
-  letter-spacing: 0.32em;
-  margin-bottom: 6px;
-}
-
-/* brand sub line : "& Associstes" */
-.brand-line--sub {
-  font-size: 12px;
-  font-weight: 300;
-  letter-spacing: 0.45em;
-  opacity: 0.9;
-}
-
-/* Contact Row */
-.site-footer__contact {
-  font-size: 13px;
-  letter-spacing: 0.06em;
-  opacity: 0.9;
-  margin-top: 26px;
-  margin-bottom: 26px;
-}
-
-.site-footer__link {
-  color: #fff;
-  text-decoration: none;
-  opacity: 0.92;
-}
-
-.site-footer__link:hover {
-  opacity: 1;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.site-footer__sep {
-  display: inline-block;
-  margin: 0 10px;
-  opacity: 0.55;
-}
-
-/* Brokerage Logo */
-.site-footer__brokerage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.site-footer__brokerage-text {
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  line-height: 1.05;
-  text-transform: uppercase;
-  opacity: 0.95;
-}
-
-.site-footer__brokerage-img {
-  height: 80px;
-  width: auto;
-  display: block;
-  opacity: 0.95;
-}
-
-/* Footer Copyright Note */
-.site-footer__note {
-  margin-top: 18px;
-  font-size: 12px;
-  opacity: 0.7;
-}
-
-
-/* ====================================================================================================================================================
-  Utility
-  ==================================================================================================================================================== */
-
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 28px;
-}
-
-
-/* ====================================================================================================================================================
-   Responsive: Header/Hero
-   ==================================================================================================================================================== */
-
-@media (max-width: 860px) {
-  .header-inner {
-    grid-template-columns: auto 1fr auto;
-  }
-
-  /* Hide desktop links; show hamburger instead */
-  .topbar__nav--left,
-  .topbar__nav--right .navlink {
-    display: none;
-  }
-
-  .navtoggle {
-    display: inline-block;
-  }
-
-  .brand {
-    justify-self: center;
-  }
-
-  .hero__content {
-    padding-top: 64px;
-  }
-
-  .hero__title {
-    font-size: 34px;
-    letter-spacing: 0.16em;
-  }
-
-  .hero__buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .btn { min-width: 220px; }
 }
