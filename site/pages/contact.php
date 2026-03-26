@@ -10,8 +10,8 @@ $pageTitle = "Contact";
 $activePage = "contact";
 
 // Global layout includes
-require ROOT_PATH . "/partials/head.php";
-require ROOT_PATH . "/partials/header.php";
+require ROOT_PATH . "/pages/partials/head.php";
+require ROOT_PATH . "/pages/partials/header.php";
 
 // Form submission handling (placeholder)
 // validates basic inputs and simulates sending
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         "submitText" => "Send Message",
       ];
       // render the contact form
-      require ROOT_PATH . "/partials/contact-form.php";
+      require ROOT_PATH . "/pages/partials/contact-form.php";
     ?>
   </section>
 </main>
@@ -67,5 +67,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <?php 
 // Site footer (global)
-require ROOT_PATH . "/partials/footer.php"; 
+require ROOT_PATH . "/pages/partials/footer.php"; 
 ?>

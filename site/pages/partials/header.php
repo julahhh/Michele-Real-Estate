@@ -71,35 +71,6 @@ Header + Hero Template Partial
 
 </header>
 
-
-<!-- =====================================================
-  Hero Section
-  - Background image + overlay handled in CSS
-  - Title branding + CTA buttons
-===================================================== -->
-<section class="hero">
-  <div class="hero__bg" aria-hidden="true"></div>
-  <div class="hero__overlay" aria-hidden="true"></div>
-
-  <div class="hero__inner">
-    <div class="hero__content">
-
-      <!-- Main title / branding -->
-      <h1 class="hero__title">
-        MICHELE RUEFF<br>
-        <span class="hero__subtitle">&amp; ASSOCIATES</span>
-      </h1>
-
-      <!-- Hero call to action buttons -->
-      <div class="hero__buttons">
-        <a class="btn btn--ghost" href="/about">ABOUT</a>
-        <a class="btn btn--ghost" href="/search">SEARCH HOMES</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <script>
    /* =====================================================
   Header + Navigation Behavior Script

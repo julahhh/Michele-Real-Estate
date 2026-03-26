@@ -9,17 +9,17 @@ $pageTitle = "Sell";
 $activePage = "sell";
 
 // Global layout includes
-require ROOT_PATH . "/partials/head.php";
-require ROOT_PATH . "/partials/header.php";
+require ROOT_PATH . "/pages/partials/head.php";
+require ROOT_PATH . "/pages/partials/header.php";
 
 ?>
 
 <main>
   <!-- Testimonials section (partial) -->
-  <?php require ROOT_PATH . "/partials/testimonials.php";?>    
+  <?php require ROOT_PATH . "/pages/partials/testimonials.php";?>    
 
   <!-- Call to Action section (partial) -->
-  <?php require ROOT_PATH . "/partials/cta.php";?>
+  <?php require ROOT_PATH . "/pages/partials/cta.php";?>
 </main>
 
 <?php

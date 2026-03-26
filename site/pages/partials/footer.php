@@ -74,7 +74,7 @@ Footer Template Partial
 </footer>
 
 <!-- Contact Modal Partial -->
-<?php require ROOT_PATH . "/partials/contact-modal.php"; ?>
+<?php require ROOT_PATH . "/pages/partials/contact-modal.php"; ?>
 
 <!-- Main site JavaScript (header behavior, modal logic, menu toggle) -->
 <script src="/assets/js/main.js" defer></script>
