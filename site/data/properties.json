@@ -1,0 +1,15 @@
+[
+    {
+        "id": 1774553375,
+        "title": "132 Apple Street",
+        "city": "Orlando, FL",
+        "description": "This is a sample description",
+        "price": 485000,
+        "beds": 5,
+        "baths": 2,
+        "sqft": 2500,
+        "image": "\/assets\/uploads\/1774555473_tilesearchhomes.png",
+        "featured": false,
+        "sold": false
+    }
+]
