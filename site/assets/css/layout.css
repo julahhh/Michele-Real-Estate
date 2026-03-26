@@ -155,7 +155,6 @@ Header / Navigation
 .hero__bg {
   position: absolute;
   inset: 0;
-  background-image: url("/assets/img/hero.jpg");
   background-size: cover;
   background-position: top center;
   transform: scale(1);
