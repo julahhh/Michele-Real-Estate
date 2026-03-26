@@ -24,6 +24,7 @@ $routes = [
   "/sell" => "/pages/sell.php",
   "/blog" => "/pages/blog.php",
   "/contact" => "/pages/contact.php",
+  "/manage" => "/pages/admin/manage.php",
 ];
 
 // If the requested path matches a defined route, load the corresponding PHP file and stop execution
