@@ -124,11 +124,20 @@ if (isset($_GET["edit"])) {
   <title>Manage properties</title>
   <style>
     body { font-family: Arial; padding: 20px; max-width: 900px; margin: auto; }
-    input, textarea { display: block; margin: 8px 0; padding: 8px; width: 100%; }
+    input:not([type="checkbox"]), textarea { display: block; margin: 8px 0; padding: 8px; width: 100%; }
     button { padding: 10px 16px; cursor: pointer; }
     .card { border: 1px solid #ccc; padding: 12px; margin-bottom: 10px; }
     .actions a { margin-right: 10px; }
     img { margin: 10px 0; display: block; }
+
+    label{
+        display: block;
+        margin: 8px 0;
+    }
+    input[type="checkbox"] {
+        width: auto;
+        margin=0;
+    }
   </style>
 </head>
 <body>
@@ -175,15 +184,13 @@ if (isset($_GET["edit"])) {
     <label>
         <input type="checkbox" name="featured"
         <?= !empty($editItem["featured"]) ? "checked" : "" ?>>
-        Featured
+        Add item to Featured properties section (will not show if marked as Sold)
     </label>
-
-    <br>
 
     <label>
         <input type="checkbox" name="sold"
         <?= !empty($editItem["sold"]) ? "checked" : "" ?>>
-        Sold
+        Mark propety as Sold (will not show in active listings and cannot be Featured)
     </label>
 
     <br>

@@ -2,7 +2,7 @@
     {
         "id": 1774553375,
         "title": "132 Apple Street",
-        "city": "Orlando, FL",
+        "city": "Orlando",
         "description": "This is a sample description",
         "price": 485000,
         "beds": 5,
@@ -11,5 +11,18 @@
         "image": "\/assets\/uploads\/1774555473_tilesearchhomes.png",
         "featured": false,
         "sold": false
+    },
+    {
+        "id": 1774556329,
+        "title": "987 Pear Lane",
+        "city": "Apopka",
+        "description": "",
+        "price": 600000,
+        "beds": 5,
+        "baths": 2,
+        "sqft": 5000,
+        "image": "",
+        "featured": false,
+        "sold": true
     }
 ]
