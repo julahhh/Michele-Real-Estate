@@ -120,120 +120,117 @@ if (isset($_GET["edit"])) {
 <html>
 <head>
     <button type="button" onclick="window.location='/admin'">Return to Admin Panel</button>
-
-  <title>Manage properties</title>
-  <style>
-    body { font-family: Arial; padding: 20px; max-width: 900px; margin: auto; }
-    input:not([type="checkbox"]), textarea { display: block; margin: 8px 0; padding: 8px; width: 100%; }
-    button { padding: 10px 16px; cursor: pointer; }
-    .card { border: 1px solid #ccc; padding: 12px; margin-bottom: 10px; }
-    .actions a { margin-right: 10px; }
-    img { margin: 10px 0; display: block; }
-
-    label{
-        display: block;
-        margin: 8px 0;
-    }
-    input[type="checkbox"] {
-        width: auto;
-        margin=0;
-    }
-  </style>
+    <title>Manage properties</title>
+    <link rel="stylesheet" href="/admin.css">
 </head>
 <body>
+    <div class = "admin-container"> 
+        <h1>Manage properties</h1>
 
-<h1>Manage properties</h1>
+        <div class="card">
+            <h2><?= $editItem ? "Edit Listing" : "Add Listing" ?></h2>
 
-<h2><?= $editItem ? "Edit Property" : "Add Property" ?></h2>
+            <form method="post" enctype="multipart/form-data">
 
-<form method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<?= htmlspecialchars($editItem["id"] ?? "") ?>">
 
-    <input type="hidden" name="id" value="<?= htmlspecialchars($editItem["id"] ?? "") ?>">
+                <input name="title" placeholder="Title"
+                    value="<?= htmlspecialchars($editItem["title"] ?? "") ?>">
 
-    <input name="title" placeholder="Title"
-        value="<?= htmlspecialchars($editItem["title"] ?? "") ?>">
+                <input name="address" placeholder="Address"
+                    value="<?= htmlspecialchars($editItem["address"] ?? "") ?>">
 
-    <input name="city" placeholder="City"
-        value="<?= htmlspecialchars($editItem["city"] ?? "") ?>">
+                <input name="city" placeholder="City"
+                    value="<?= htmlspecialchars($editItem["city"] ?? "") ?>">
 
-    <textarea name="description" placeholder="Description" rows="4"><?= htmlspecialchars($editItem["description"] ?? "") ?></textarea>
+                <textarea name="description" placeholder="Description" rows="4"><?= htmlspecialchars($editItem["description"] ?? "") ?></textarea>
 
-    <input name="price" type="number" placeholder="Price"
-        value="<?= htmlspecialchars($editItem["price"] ?? "") ?>">
+                <input name="price" type="number" placeholder="Price"
+                    value="<?= htmlspecialchars($editItem["price"] ?? "") ?>">
 
-    <input name="beds" type="number" placeholder="Beds"
-        value="<?= htmlspecialchars($editItem["beds"] ?? "") ?>">
+                <input name="beds" type="number" placeholder="Beds"
+                    value="<?= htmlspecialchars($editItem["beds"] ?? "") ?>">
 
-    <input name="baths" type="number" placeholder="Baths"
-        value="<?= htmlspecialchars($editItem["baths"] ?? "") ?>">
+                <input name="baths" type="number" placeholder="Baths"
+                    value="<?= htmlspecialchars($editItem["baths"] ?? "") ?>">
 
-    <input name="sqft" type="number" placeholder="Square Feet"
-        value="<?= htmlspecialchars($editItem["sqft"] ?? "") ?>">
+                <input name="sqft" type="number" placeholder="Square Feet"
+                    value="<?= htmlspecialchars($editItem["sqft"] ?? "") ?>">
 
-    <label>
-        Upload Image:
-        <input type="file" name="imageFile" accept="image/*">
-    </label>
+                <label>Upload Image:</label>
+                <input type="file" name="imageFile" accept="image/*">
 
-    <?php if (!empty($editItem["image"])): ?>
-        <img src="<?= htmlspecialchars($editItem["image"]) ?>" style="max-width:200px;">
-    <?php endif; ?>
+                <?php if (!empty($editItem["image"])): ?>
+                    <img src="<?= htmlspecialchars($editItem["image"]) ?>" style="max-width:200px;">
+                <?php endif; ?>
 
-    <br>
+                <div class="form-row">
+                    <label>
+                        <input type="checkbox" name="featured"
+                        <?= !empty($editItem["featured"]) ? "checked" : "" ?>>
+                        Featured
+                    </label>
 
-    <label>
-        <input type="checkbox" name="featured"
-        <?= !empty($editItem["featured"]) ? "checked" : "" ?>>
-        Add item to Featured properties section (will not show if marked as Sold)
-    </label>
+                    <label>
+                        <input type="checkbox" name="sold"
+                        <?= !empty($editItem["sold"]) ? "checked" : "" ?>>
+                        Sold
+                    </label>
+                </div>
 
-    <label>
-        <input type="checkbox" name="sold"
-        <?= !empty($editItem["sold"]) ? "checked" : "" ?>>
-        Mark propety as Sold (will not show in active listings and cannot be Featured)
-    </label>
+                <button type="submit">
+                    <?= $editItem ? "Update Listing" : "Add Listing" ?>
+                </button>
 
-    <br>
-
-    <button type="submit">
-        <?= $editItem ? "Update Property" : "Add Property" ?>
-    </button>
-
-    <button type="button" onclick="window.location='/admin/properties'">Cancel</button>
-
-</form>
-
-<hr>
-
-<h2>All Properties</h2>
-
-<?php if (empty($properties)): ?>
-  <p>No properties yet.</p>
-<?php endif; ?>
-
-<?php foreach ($properties as $item): ?>
-    <div class="card">
-        <strong><?= htmlspecialchars($item["title"])?>, <?= htmlspecialchars($item["city"]) ?></strong><br>
-
-        $<?= number_format($item["price"]) ?><br>
-
-        <?= $item["beds"] ?> Bed | <?= $item["baths"] ?> Bath | <?= $item["sqft"] ?> sqft<br>
-
-        <?php if (!empty($item["featured"])): ?>
-            <span style="color:green;">FEATURED</span>
-        <?php endif; ?>
-
-        <?php if (!empty($item["sold"])): ?>
-            <span style="color:red;">SOLD</span>
-        <?php endif; ?>
-
-        <div class="actions">
-            <a href="/admin/properties?edit=<?= $item["id"] ?>">Edit</a>
-            <a href="/admin/properties?delete=<?= $item["id"] ?>"
-               onclick="return confirm('Delete this property?')">Delete</a>
+                <button type="button" onclick="window.location='/admin/properties'">Cancel</button>
+            </form>
         </div>
-    </div>
-<?php endforeach; ?>
+ 
 
+        <hr>
+
+        <div class="card">
+            <h2>All Properties</h2>
+
+            <?php if (empty($properties)): ?>
+            <p>No properties yet.</p>
+            <?php endif; ?>
+
+            <?php foreach ($properties as $item): ?>
+                <div class="listing">
+
+                    <img src="<?= htmlspecialchars($item["image"]) ?>" alt="">
+
+                    <div class="listing-details">
+                        <div class="listing-title">
+                            <?= htmlspecialchars($item["title"]) ?>
+                        </div>
+
+                        <?= htmlspecialchars($item["address"] ?? "") ?>, <?= htmlspecialchars($item["city"]) ?><br>
+
+                        $<?= number_format($item["price"]) ?><br>
+
+                        <?= $item["beds"] ?> Bed | <?= $item["baths"] ?> Bath | <?= $item["sqft"] ?> sqft<br>
+
+                        <div class="badges">
+                            <?php if (!empty($item["featured"])): ?>
+                                <span class="badge-featured">FEATURED</span>
+                            <?php endif; ?>
+
+                            <?php if (!empty($item["sold"])): ?>
+                                <span class="badge-sold">SOLD</span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <a href="/admin/properties?edit=<?= $item["id"] ?>">Edit</a>
+                        <a href="/admin/properties?delete=<?= $item["id"] ?>"
+                        onclick="return confirm('Delete this listing?')">Delete</a>
+                    </div>
+
+                </div>
+            <?php endforeach; ?>
+        </div>
 </body>
 </html>

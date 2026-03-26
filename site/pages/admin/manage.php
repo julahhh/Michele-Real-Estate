@@ -8,8 +8,15 @@ if (empty($_SESSION["admin"])) {
 }
 ?>
 
-<main>
-    
+
+<!DOCTYPE html>
+<html>
+<head>
+    <button type="button" onclick="window.location='/admin'">Return to Admin Panel</button>
+    <title>Manage properties</title>
+    <link rel="stylesheet" href="/admin.css">
+</head>
+<body>
   <h1>Admin Panel</h1>
   <p>Welcome to the admin panel. Use the links below to manage listings and blog posts.</p>
   <ul>
@@ -19,4 +26,5 @@ if (empty($_SESSION["admin"])) {
     <li><a href="/admin/logout">Logout</a></li>
   </ul>
 
-</main> 
+</body>
+</html>
