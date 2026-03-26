@@ -23,6 +23,6 @@
         "sqft": 5000,
         "image": "",
         "featured": false,
-        "sold": true
+        "sold": false
     }
 ]

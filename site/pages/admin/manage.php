@@ -12,8 +12,8 @@ if (empty($_SESSION["admin"])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <button type="button" onclick="window.location='/admin'">Return to Admin Panel</button>
-    <title>Manage properties</title>
+    <title>Admin Panel</title>
+    <button type="button" onclick="window.location='/admin/logout'">Logout</button>
     <link rel="stylesheet" href="/admin.css">
 </head>
 <body>
