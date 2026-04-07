@@ -1,123 +1,553 @@
+/* =============================================================================
+   Admin CSS
+   ---------------------------------------------------------------------------
+   Purpose:
+   - Styles for the Downloads Manager admin panel (admin.php)
+   - Standalone styles — does not inherit site global.css or pages.css
+   ============================================================================= */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-  margin: 0;
-  padding: 30px;
+    font-family: sans-serif;
+    background: #f5f7fa;
+    color: #1a2744;
+    min-height: 100vh;
 }
 
-/* Layout */
-.admin-container {
-  max-width: 1100px;
-  margin: auto;
+/* ── Login overlay ──────────────────────────────────────────────────────── */
+.admin-login {
+    position: fixed;
+    inset: 0;
+    background: #1a2744;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
 }
 
-/* Headings */
-h1 {
-  margin-bottom: 20px;
+.admin-login__box {
+    background: #fff;
+    border-radius: 16px;
+    padding: 48px 40px;
+    width: 340px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-h2 {
-  margin-top: 40px;
-  margin-bottom: 10px;
-  font-size: 18px;
-  letter-spacing: 0.08em;
+.admin-login__title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 2px;
 }
 
-/* Card */
-.card {
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 20px;
-  margin-bottom: 20px;
+.admin-login__sub {
+    color: #8a96b0;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
 }
 
-/* Form */
-form input:not([type="checkbox"]),
-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  font-size: 14px;
+.admin-login__input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
 }
 
-form textarea {
-  resize: vertical;
+.admin-login__input:focus {
+    outline: none;
+    border-color: #666;
 }
 
-/* Checkbox rows */
-.form-row {
-  display: flex;
-  gap: 20px;
-  margin-top: 10px;
+.admin-login__error {
+    color: #e63946;
+    font-size: 0.85rem;
+    min-height: 18px;
 }
 
-.form-row label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 14px;
+.admin-login__btn {
+    width: 100%;
+    padding: 13px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.18s;
 }
 
-/* Button */
-button {
-  background: #111;
-  color: #fff;
-  border: none;
-  padding: 10px 18px;
-  cursor: pointer;
-  margin-top: 10px;
+.admin-login__btn:hover { background: #111; }
+
+/* ── App shell ──────────────────────────────────────────────────────────── */
+.admin-app { display: flex; flex-direction: column; min-height: 100vh; }
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+.admin-header {
+    background: #fff;
+    border-bottom: 3px solid #eee;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-button:hover {
-  background: #333;
+.admin-header__title {
+    font-size: 1.4rem;
+    font-weight: 800;
 }
 
-/* Listings */
-.listing {
-  display: grid;
-  grid-template-columns: 60px 1fr auto;
-  gap: 15px;
-  align-items: center;
+.admin-header__logout {
+    background: none;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #8a96b0;
+    cursor: pointer;
+    transition: border-color 0.18s, color 0.18s;
 }
 
-.listing img {
-  width: 25px;
-  height: 25px;
-  border: 1px solid #ddd;
+.admin-header__logout:hover {
+    border-color: #e63946;
+    color: #e63946;
 }
 
-.listing-details {
-  font-size: 14px;
+/* ── Main content ────────────────────────────────────────────────────────── */
+.admin-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
-.listing-title {
-  font-weight: bold;
+/* ── Form card ───────────────────────────────────────────────────────────── */
+.admin-form-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+    padding: 32px;
 }
 
-.badges span {
-  display: inline-block;
-  font-size: 11px;
-  padding: 2px 6px;
-  margin-right: 5px;
-  border-radius: 3px;
+.admin-form-card__title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+    border-bottom: 2px solid #f0f0f0;
 }
 
-.badge-featured {
-  background: #d4edda;
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
 }
 
-.badge-sold {
-  background: #f8d7da;
+.admin-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
-/* Actions */
-.actions a {
-  margin-left: 10px;
-  font-size: 13px;
-  text-decoration: none;
+.admin-form-group--full {
+    grid-column: 1 / -1;
 }
 
-.actions a:hover {
-  text-decoration: underline;
+.admin-form-group__label {
+    font-size: 0.83rem;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.admin-form-group__input {
+    font-size: 0.95rem;
+    padding: 10px 14px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.2s;
+    width: 100%;
+}
+
+.admin-form-group__input:focus {
+    outline: none;
+    border-color: #888;
+}
+
+.admin-form-group__input--textarea {
+    resize: vertical;
+    min-height: 85px;
+}
+
+.admin-form-group__hint {
+    font-size: 0.78rem;
+    color: #8a96b0;
+}
+
+/* ── Upload zone ─────────────────────────────────────────────────────────── */
+.admin-upload-zone {
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    padding: 18px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.admin-upload-zone:hover,
+.admin-upload-zone--drag {
+    border-color: #666;
+    background: #fafafa;
+}
+
+.admin-upload-zone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+}
+
+.admin-upload-zone__hint {
+    font-size: 0.87rem;
+    color: #8a96b0;
+    pointer-events: none;
+}
+
+.admin-upload-zone__filename {
+    font-size: 0.87rem;
+    font-weight: 700;
+    margin-top: 4px;
+    pointer-events: none;
+}
+
+/* ── Upload progress bar ─────────────────────────────────────────────────── */
+.admin-upload-progress {
+    width: 100%;
+    height: 5px;
+    background: #eee;
+    border-radius: 3px;
+    margin-top: 8px;
+    display: none;
+}
+
+.admin-upload-progress__bar {
+    height: 100%;
+    background: #333;
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.3s;
+}
+
+/* ── Form actions ────────────────────────────────────────────────────────── */
+.admin-form-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+/* ── Shared button base ──────────────────────────────────────────────────── */
+.admin-btn {
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: background 0.18s, border-color 0.18s, color 0.18s;
+}
+
+.admin-btn--save {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+.admin-btn--save:hover {
+    background: #111;
+    border-color: #111;
+}
+
+.admin-btn--cancel {
+    background: none;
+    color: #8a96b0;
+    border-color: #ddd;
+}
+
+.admin-btn--cancel:hover {
+    border-color: #333;
+    color: #333;
+}
+
+.admin-btn--edit {
+    background: none;
+    color: #333;
+    border-color: #ccc;
+    padding: 5px 12px;
+    font-size: 0.82rem;
+}
+
+.admin-btn--edit:hover {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+.admin-btn--delete {
+    background: none;
+    color: #aaa;
+    border-color: #e8e8e8;
+    padding: 5px 12px;
+    font-size: 0.82rem;
+}
+
+.admin-btn--delete:hover {
+    border-color: #e63946;
+    color: #e63946;
+}
+
+/* ── Status message ──────────────────────────────────────────────────────── */
+.admin-status { font-size: 0.88rem; font-weight: 700; }
+.admin-status--ok  { color: #2dc653; }
+.admin-status--err { color: #e63946; }
+
+/* ── Table card ──────────────────────────────────────────────────────────── */
+.admin-table-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+}
+
+.admin-table-card__header {
+    padding: 20px 28px 16px;
+    border-bottom: 2px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.admin-table-card__title {
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+.admin-table-card__count {
+    background: #f5f5f5;
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #8a96b0;
+}
+
+.admin-table-wrap { overflow-x: auto; }
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table thead th {
+    text-align: left;
+    padding: 11px 18px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #8a96b0;
+    background: #f9f9f9;
+    border-bottom: 2px solid #eee;
+}
+
+.admin-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.15s;
+}
+
+.admin-table tbody tr:last-child { border-bottom: none; }
+.admin-table tbody tr:hover { background: #fafafa; }
+
+.admin-table tbody td {
+    padding: 12px 18px;
+    font-size: 0.92rem;
+    vertical-align: middle;
+}
+
+.admin-table__thumb {
+    width: 48px;
+    height: 36px;
+    border-radius: 6px;
+    background-size: cover;
+    background-position: center;
+}
+
+.admin-table__title-cell { font-weight: 700; }
+
+.admin-table__badge {
+    background: #f0f0f0;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.admin-table__link {
+    color: #333;
+    font-weight: 700;
+    font-size: 0.82rem;
+}
+
+.admin-table__date {
+    color: #8a96b0;
+    font-size: 0.85rem;
+}
+
+.admin-table__actions {
+    display: flex;
+    gap: 8px;
+}
+
+.admin-table__empty {
+    text-align: center;
+    color: #aaa;
+    padding: 60px;
+    font-size: 0.95rem;
+}
+
+/* ── Header left group (back link + title) ───────────────────────────────── */
+.admin-header__left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.admin-header__back {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #8a96b0;
+    text-decoration: none;
+    transition: color 0.18s;
+}
+
+.admin-header__back:hover { color: #1a2744; }
+
+/* ── Dashboard welcome text ──────────────────────────────────────────────── */
+.admin-dashboard__welcome {
+    font-size: 1rem;
+    color: #8a96b0;
+    margin-bottom: 28px;
+}
+
+/* ── Dashboard card grid ─────────────────────────────────────────────────── */
+.admin-dashboard__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* ── Dashboard card base ─────────────────────────────────────────────────── */
+.admin-dashboard__card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+    padding: 28px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    text-decoration: none;
+    color: inherit;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    position: relative;
+}
+
+/* Active card — clickable */
+.admin-dashboard__card--active {
+    cursor: pointer;
+}
+
+.admin-dashboard__card--active:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.11);
+    border-color: #333;
+}
+
+/* Coming soon card — muted, not clickable */
+.admin-dashboard__card--soon {
+    opacity: 0.55;
+    cursor: default;
+}
+
+.admin-dashboard__card-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+}
+
+.admin-dashboard__card-body {
+    flex: 1;
+}
+
+.admin-dashboard__card-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.admin-dashboard__card-desc {
+    font-size: 0.87rem;
+    color: #666;
+    line-height: 1.55;
+}
+
+/* Arrow on active cards */
+.admin-dashboard__card-arrow {
+    font-size: 1.2rem;
+    color: #ccc;
+    align-self: center;
+    flex-shrink: 0;
+    transition: color 0.18s, transform 0.18s;
+}
+
+.admin-dashboard__card--active:hover .admin-dashboard__card-arrow {
+    color: #333;
+    transform: translateX(4px);
+}
+
+/* Coming Soon badge */
+.admin-dashboard__card-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: #f0f0f0;
+    color: #999;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    border-radius: 20px;
+    padding: 3px 10px;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .admin-header,
+    .admin-main { padding-left: 16px; padding-right: 16px; }
+    .admin-form-grid { grid-template-columns: 1fr; }
+    .admin-form-group--full { grid-column: 1; }
 }

@@ -117,13 +117,30 @@ if (isset($_GET["edit"])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <button type="button" onclick="window.location='/admin'">Return to Admin Panel</button>
-    <title>Manage properties</title>
-    <link rel="stylesheet" href="/admin.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Admin — Properties Manager</title>
+    <link rel="stylesheet" href="/admin/admin.css">
 </head>
 <body>
+    <!-- =====================================================
+    Login Overlay
+    Only shown if arriving directly (not via dashboard)
+    ===================================================== -->
+    <div class="admin-login" id="loginOverlay">
+        <div class="admin-login__box">
+            <h2 class="admin-login__title">Admin Login</h2>
+            <p class="admin-login__sub">Downloads Manager</p>
+            <input class="admin-login__input" type="password" id="pwInput" placeholder="Password" />
+            <p class="admin-login__error" id="loginErr"></p>
+            <button class="admin-login__btn" onclick="attemptLogin()">Sign In</button>
+        </div>
+    </div>
+
+
+
     <div class = "admin-container"> 
         <h1>Manage properties</h1>
 
@@ -232,5 +249,6 @@ if (isset($_GET["edit"])) {
                 </div>
             <?php endforeach; ?>
         </div>
+    </div>
 </body>
 </html>

@@ -27,8 +27,6 @@ $routes = [
 
   // Admin routes
   "/admin" => "/pages/admin/manage.php", 
-  "/admin/login" => "/pages/admin/login.php",
-  "/admin/logout" => "/pages/admin/logout.php",
   "/admin/properties" => "/pages/admin/adm-properties.php",
   "/admin/blog" => "/pages/admin/adm-blog.php",
   "/admin/sell" => "/pages/admin/adm-sell.php",
