@@ -2,62 +2,44 @@
 /* =====================================================
 Featured Properties Partial
 - Displays a grid of highlighted listings.
-- Data can be overridden per-page or later pulled from
-  a database / MLS feed / API.
+- Loads featured properties from data/properties.json
+  by default. Can be overridden per-page by setting
+  $featured before including this partial.
 =====================================================*/
 
 
-$featured = $featured ?? [
-  "title" => "FEATURED PROPERTIES",
+if (!isset($featured)) {
+  // Load all properties and keep only featured, non-sold ones
+  $allProperties = json_decode(
+    file_get_contents(ROOT_PATH . "/data/properties.json"),
+    true
+  ) ?? [];
 
-  // Default featured properties data (replace with DB/MLS Data later)
-  "items" => [
-    /* Example item structure:
-    [
-      "image" => "/assets/img/PROPERTY_IMAGE_NAME.jpg",
-      "imageAlt" => "Featured Property #",
-      "beds" => 4,
-      "baths" => 3,
-      "title" => "PROPERTY NAME",
-      "price" => "$1,250,000",
-      "href" => "/property/#",
-    ],
-    */
+  $featuredItems = array_values(
+    array_filter($allProperties, fn($p) => !empty($p["featured"]) && empty($p["sold"]))
+  );
 
-    [
-      "image" => "/assets/img/featured-1.jpg",
-      "imageAlt" => "Featured property 1",
-      "beds" => 4,
-      "baths" => 3,
-      "title" => "Property",
-      "price" => "$1,250,000",
-      "href" => "/property/1",
-    ],
-    [
-      "image" => "/assets/img/featured-2.jpg",
-      "imageAlt" => "Featured property 2",
-      "beds" => 3,
-      "baths" => 2,
-      "title" => "Property",
-      "price" => "$825,000",
-      "href" => "/property/2",
-    ],
-    [
-      "image" => "/assets/img/featured-3.jpg",
-      "imageAlt" => "Featured property 3",
-      "beds" => 5,
-      "baths" => 4,
-      "title" => "Property",
-      "price" => "$1,980,000",
-      "href" => "/property/3",
-    ],
-  ],
-];
+  // Map properties.json schema → partial's item schema
+  $mappedItems = array_map(fn($p) => [
+    "image"    => $p["image"]    ?? "",
+    "imageAlt" => $p["title"]    ?? "Featured property",
+    "beds"     => $p["beds"]     ?? 0,
+    "baths"    => $p["baths"]    ?? 0,
+    "sqft"     => $p["sqft"]     ?? 0,
+    "title"    => $p["title"]    ?? "Property",
+    "city"     => $p["city"]     ?? "",
+    "price"    => !empty($p["price"]) ? "$" . number_format((int)$p["price"]) : "",
+    "href"     => "/property/" . ($p["id"] ?? "#"),
+  ], $featuredItems);
+
+  $featured = [
+    "title" => "FEATURED PROPERTIES",
+    "items" => $mappedItems,
+  ];
+}
 
 // Sanitize and extract data for rendering
 $title = htmlspecialchars((string)($featured["title"] ?? "FEATURED PROPERTIES"));
-
-// Ensure featured items are an array
 $items = is_array($featured["items"] ?? null) ? $featured["items"] : [];
 ?>
 
@@ -68,36 +50,57 @@ $items = is_array($featured["items"] ?? null) ? $featured["items"] : [];
     <!-- Section Title -->
     <h2 class="fp__title"><?= $title ?></h2>
 
-    <!-- Properties Card Grid -->
-    <div class="fp__grid">
-      <?php foreach ($items as $p): ?>
-        <?php
-          // Sanitize individual property data
-          $img = htmlspecialchars((string)($p["image"] ?? ""));
-          $alt = htmlspecialchars((string)($p["imageAlt"] ?? "Featured property"));
-          $beds = htmlspecialchars((string)($p["beds"] ?? ""));
-          $baths = htmlspecialchars((string)($p["baths"] ?? ""));
-          $ptitle = htmlspecialchars((string)($p["title"] ?? "Property"));
-          $price = htmlspecialchars((string)($p["price"] ?? ""));
-          $href = htmlspecialchars((string)($p["href"] ?? "#"));
+    <?php if (empty($items)): ?>
+
+      <!-- Empty state — shown when no properties are marked featured -->
+      <p class="fp__empty">No featured properties at this time. Check back soon.</p>
+
+    <?php else: ?>
+
+      <!-- Properties Card Grid -->
+      <div class="fp__grid">
+        <?php foreach ($items as $p):
+          $img   = htmlspecialchars((string)($p["image"]    ?? ""));
+          $alt   = htmlspecialchars((string)($p["imageAlt"] ?? "Featured property"));
+          $beds  = htmlspecialchars((string)($p["beds"]     ?? ""));
+          $baths = htmlspecialchars((string)($p["baths"]    ?? ""));
+          $sqft  = !empty($p["sqft"]) ? number_format((int)$p["sqft"]) : "";
+          $ptitle = htmlspecialchars((string)($p["title"]   ?? "Property"));
+          $city  = htmlspecialchars((string)($p["city"]     ?? ""));
+          $price = htmlspecialchars((string)($p["price"]    ?? ""));
+          $href  = htmlspecialchars((string)($p["href"]     ?? "#"));
         ?>
 
-        <!-- Individual Property Card -->
-        <a class="fp__card" href="<?= $href ?>">
+          <!-- Individual Property Card -->
+          <a class="fp__card" href="<?= $href ?>">
 
-          <!-- Property Image -->
-          <div class="fp__media">
-            <img class="fp__img" src="<?= $img ?>" alt="<?= $alt ?>">
-          </div>
+            <!-- Property Image -->
+            <div class="fp__media">
+              <?php if ($img): ?>
+                <img class="fp__img" src="<?= $img ?>" alt="<?= $alt ?>">
+              <?php else: ?>
+                <div class="fp__img-placeholder"></div>
+              <?php endif; ?>
+            </div>
 
-          <!-- Property Meta Info -->
-          <div class="fp__meta">
-            <div class="fp__stats"><?= $beds ?> Bed | <?= $baths ?> Baths</div>
-            <div class="fp__name"><?= $ptitle ?></div>
-            <div class="fp__price"><?= $price ?></div>
-          </div>
-        </a>
-      <?php endforeach; ?>
-    </div>
+            <!-- Property Meta Info -->
+            <div class="fp__meta">
+              <div class="fp__stats">
+                <?= $beds ?> Bed &nbsp;|&nbsp; <?= $baths ?> Bath
+                <?= $sqft ? "&nbsp;|&nbsp; $sqft sqft" : "" ?>
+              </div>
+              <div class="fp__name"><?= $ptitle ?><?= $city ? " — $city" : "" ?></div>
+              <?php if ($price): ?>
+                <div class="fp__price"><?= $price ?></div>
+              <?php endif; ?>
+            </div>
+
+          </a>
+
+        <?php endforeach; ?>
+      </div>
+
+    <?php endif; ?>
+
   </div>
 </section>

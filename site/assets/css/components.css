@@ -469,6 +469,22 @@ Buttons
   transform: scale(1.08);
 }
 
+/* No-image placeholder */
+.fp__img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #1a1a1a;
+}
+
+/* Empty state */
+.fp__empty {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  padding: 40px 0 20px;
+}
+
 @media (max-width: 980px) {
   .fp__grid { grid-template-columns: 1fr; }
   .fp__inner { padding: 0 28px; }
