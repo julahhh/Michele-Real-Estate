@@ -12,39 +12,6 @@ $activePage = "buy";
 require ROOT_PATH . "/pages/partials/head.php";
 require ROOT_PATH . "/pages/partials/header.php";
 
-// Override featured properties title for this page
-$featured = [
-  "title" => "PROPERTIES FOR SALE",
-  "items" => [
-    [
-      "image"    => "/assets/img/featured-1.jpg",
-      "imageAlt" => "Featured property 1",
-      "beds"     => 4,
-      "baths"    => 3,
-      "title"    => "Property",
-      "price"    => "$1,250,000",
-      "href"     => "/property/1",
-    ],
-    [
-      "image"    => "/assets/img/featured-2.jpg",
-      "imageAlt" => "Featured property 2",
-      "beds"     => 3,
-      "baths"    => 2,
-      "title"    => "Property",
-      "price"    => "$825,000",
-      "href"     => "/property/2",
-    ],
-    [
-      "image"    => "/assets/img/featured-3.jpg",
-      "imageAlt" => "Featured property 3",
-      "beds"     => 5,
-      "baths"    => 4,
-      "title"    => "Property",
-      "price"    => "$1,980,000",
-      "href"     => "/property/3",
-    ],
-  ],
-];
 ?>
 
 <main>

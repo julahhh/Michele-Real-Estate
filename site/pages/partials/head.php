@@ -21,6 +21,6 @@ Head Template Partial
   <title><?= htmlspecialchars($pageTitle) ?></title>
 
   <!-- Global stylesheet -->
-  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
 </head>
 <body>
