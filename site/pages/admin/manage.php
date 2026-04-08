@@ -57,21 +57,21 @@ App Shell
                 <span class="admin-dashboard__card-arrow">→</span>
             </a>
 
-            <!-- Sold Properties -->
-            <div class="admin-dashboard__card admin-dashboard__card--active" href="/admin/properties">
-                <div class="admin-dashboard__card-icon">📚</div>
+            <!-- Sell Leads -->
+            <a class="admin-dashboard__card admin-dashboard__card--active" href="/admin/sell">
+                <div class="admin-dashboard__card-icon">📋</div>
                 <div class="admin-dashboard__card-body">
-                    <h2 class="admin-dashboard__card-title">Sold Properties</h2>
+                    <h2 class="admin-dashboard__card-title">Sell Leads</h2>
                     <p class="admin-dashboard__card-desc">
-                        Manage featured properties that have been sold.
+                        View and manage seller enquiries submitted through the site.
                     </p>
                 </div>
                 <span class="admin-dashboard__card-arrow">→</span>
-            </div>
+            </a>
 
             <!-- Blog -->
-            <div class="admin-dashboard__card admin-dashboard__card--active" href="/admin/blog">
-                <div class="admin-dashboard__card-icon">🐾</div>
+            <a class="admin-dashboard__card admin-dashboard__card--active" href="/admin/blog">
+                <div class="admin-dashboard__card-icon">📝</div>
                 <div class="admin-dashboard__card-body">
                     <h2 class="admin-dashboard__card-title">Blog Manager</h2>
                     <p class="admin-dashboard__card-desc">
@@ -79,7 +79,7 @@ App Shell
                     </p>
                 </div>
                 <span class="admin-dashboard__card-arrow">→</span>
-            </div>
+            </a>
 
         </div><!-- /.admin-dashboard__grid -->
 

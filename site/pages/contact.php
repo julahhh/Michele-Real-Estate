@@ -33,7 +33,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Basic validation
     if ($name && filter_var($email, FILTER_VALIDATE_EMAIL) && $message) {
-      $sent = true;   // For now: mark as sent (later: connect to email service)
+      $sent = true;
+
+      // Save lead to data/leads.json
+      require_once ROOT_PATH . "/includes/data.php";
+      $leadsFile = ROOT_PATH . "/data/leads.json";
+      $leads     = readJson($leadsFile);
+      $leads[]   = [
+        "id"      => time() . rand(10, 99),   // unique enough for a small site
+        "name"    => $name,
+        "email"   => $email,
+        "phone"   => $phone,
+        "message" => $message,
+        "date"    => date("Y-m-d H:i:s"),
+        "read"    => false,
+      ];
+      writeJson($leadsFile, $leads);
 
     } else {
       $error = "Please fill in your name, a valid email, and a message.";

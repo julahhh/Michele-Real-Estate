@@ -38,6 +38,13 @@ if (isset($routes[$path])) {
   exit;
 }
 
+// Dynamic blog post route: /blog/{slug}
+if (preg_match('#^/blog/([a-z0-9-]+)$#', $path, $matches)) {
+  $_GET['slug'] = $matches[1];
+  require ROOT_PATH . '/pages/blog-post.php';
+  exit;
+}
+
 // Allow direct access to real files (CSS, JS, images)
 // Returning false hands control back to PHP’s server
 $file = ROOT_PATH . $path;

@@ -8,7 +8,7 @@ session_start();
 
 function requireAdmin() {
   if (empty($_SESSION["admin"])) {
-    header("Location: /admin/login");
+    header("Location: /admin");
     exit;
   }
 }

@@ -544,6 +544,39 @@ body {
     padding: 3px 10px;
 }
 
+/* ── Stats row ───────────────────────────────────────────────────────────── */
+.admin-stats {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.admin-stat {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+    padding: 20px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 110px;
+}
+
+.admin-stat__num {
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1;
+    color: #1a2744;
+}
+
+.admin-stat__label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #8a96b0;
+}
+
 /* ── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
     .admin-header,
