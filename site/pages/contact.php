@@ -26,10 +26,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   } else {
     // Sanitize and normalize user input
-    $name    = trim($_POST["name"]    ?? "");
-    $email   = trim($_POST["email"]   ?? "");
-    $phone   = trim($_POST["phone"]   ?? "");
-    $message = trim($_POST["message"] ?? "");
+    $name        = trim($_POST["name"]         ?? "");
+    $email       = trim($_POST["email"]        ?? "");
+    $phone       = trim($_POST["phone"]        ?? "");
+    $message     = trim($_POST["message"]      ?? "");
+    $inquiryType = trim($_POST["inquiry_type"] ?? "");
 
     // Basic validation
     if ($name && filter_var($email, FILTER_VALIDATE_EMAIL) && $message) {
@@ -39,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       require_once ROOT_PATH . "/includes/data.php";
       $leadsFile = ROOT_PATH . "/data/leads.json";
       $leads     = readJson($leadsFile);
-      $leads[]   = [
+      $lead = [
         "id"      => time() . rand(10, 99),   // unique enough for a small site
         "name"    => $name,
         "email"   => $email,
@@ -48,6 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         "date"    => date("Y-m-d H:i:s"),
         "read"    => false,
       ];
+      if ($inquiryType) $lead["inquiry_type"] = $inquiryType;
+      $leads[] = $lead;
       writeJson($leadsFile, $leads);
 
     } else {
@@ -97,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
           <li class="contact-info__item">
             <span class="contact-info__label">EMAIL</span>
-            <span class="contact-info__value">michele@exprealty.com</span>
+            <span class="contact-info__value">michele.rueff@exprealty.com</span>
           </li>
 
           <li class="contact-info__item">
@@ -154,147 +157,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   </section>
 
 </main>
-
-<style>
-/* =====================================================
-   Contact Page — Layout & Info Panel
-   (page-scoped styles)
-===================================================== */
-
-/* Compact hero variant */
-.hero--compact {
-  min-height: 360px !important;
-}
-
-.hero__tagline {
-  margin: 14px 0 0;
-  font-size: 14px;
-  letter-spacing: 0.10em;
-  color: rgba(255, 255, 255, 0.75);
-  font-weight: 100;
-}
-
-/* ---- Outer Section ---- */
-.contact-page {
-  background: #f3efe8;
-  padding: 0;
-}
-
-.contact-page__inner {
-  max-width: 1180px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 380px 1fr;
-  min-height: 620px;
-}
-
-/* ---- Info Panel (dark left column) ---- */
-.contact-info {
-  background: #111;
-  padding: 60px 44px;
-  display: flex;
-  flex-direction: column;
-}
-
-.contact-info__title {
-  margin: 0 0 16px;
-  font-size: 22px;
-  letter-spacing: 0.16em;
-  font-weight: 300;
-  text-transform: uppercase;
-  color: #fff;
-}
-
-.contact-info__intro {
-  font-size: 13px;
-  line-height: 1.80;
-  color: rgba(255, 255, 255, 0.55);
-  font-weight: 100;
-  margin: 0 0 44px;
-}
-
-.contact-info__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.contact-info__item {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.contact-info__label {
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
-}
-
-.contact-info__value {
-  font-size: 13px;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 100;
-  line-height: 1.65;
-}
-
-.contact-info__divider {
-  margin: 44px 0 32px;
-  border-top: 1px solid rgba(255, 255, 255, 0.10);
-}
-
-.contact-info__brokerage {
-  margin-top: auto;
-}
-
-.contact-info__brokerage-logo {
-  height: 38px;
-  width: auto;
-  display: block;
-  opacity: 0.65;
-  filter: brightness(0) invert(1);
-}
-
-/* ---- Form Panel (right column) ---- */
-.contact-form-panel {
-  background: #fff;
-  padding: 60px 54px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* Override default form styles slightly for this layout */
-.contact-form-panel .contact-form {
-  border: none;
-  padding: 0;
-  background: transparent;
-}
-
-/* ---- Responsive ---- */
-@media (max-width: 860px) {
-  .contact-page__inner {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-info {
-    padding: 44px 28px;
-  }
-
-  .contact-info__brokerage {
-    margin-top: 44px;
-  }
-
-  .contact-form-panel {
-    padding: 44px 28px;
-  }
-}
-</style>
 
 <?php
 // Site footer (global)

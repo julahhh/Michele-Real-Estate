@@ -41,6 +41,7 @@ Header + Hero Template Partial
 
     <!-- Right-aligned nav links + mobile menu button -->
     <nav class="topbar__nav topbar__nav--right" aria-label="Primary right">
+      <a class="navlink <?= $activePage === 'rentals' ? 'is-active' : '' ?>" href="/rentals">RENTALS</a>
       <a class="navlink <?= $activePage === 'blog' ? 'is-active' : '' ?>" href="/blog">BLOG</a>
       <a class="navlink <?= $activePage === 'contact' ? 'is-active' : '' ?>" href="/contact">CONTACT</a>
 
@@ -65,6 +66,7 @@ Header + Hero Template Partial
     <a href="/about">ABOUT</a>
     <a href="/buy">BUY</a>
     <a href="/sell">SELL</a>
+    <a href="/rentals">RENTALS</a>
     <a href="/blog">BLOG</a>
     <a href="/contact">CONTACT</a>
   </div>

@@ -23,6 +23,7 @@ $routes = [
   "/buy" => "/pages/buy.php",
   "/sell" => "/pages/sell.php",
   "/blog" => "/pages/blog.php",
+  "/rentals" => "/pages/rentals.php",
   "/contact" => "/pages/contact.php",
 
   // Admin routes

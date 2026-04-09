@@ -1059,3 +1059,452 @@ Buttons
   .post-body { padding: 50px 0 60px; }
   .post-hero__title { font-size: 26px !important; }
 }
+
+
+/* =====================================================
+   Contact Page — Layout & Info Panel
+   (page-scoped styles)
+===================================================== */
+
+/* Compact hero variant */
+.hero--compact {
+  min-height: 360px !important;
+}
+
+.hero__tagline {
+  margin: 14px 0 0;
+  font-size: 14px;
+  letter-spacing: 0.10em;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 100;
+}
+
+/* ---- Outer Section ---- */
+.contact-page {
+  background: #f3efe8;
+  padding: 0;
+}
+
+.contact-page__inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  min-height: 620px;
+}
+
+/* ---- Info Panel (dark left column) ---- */
+.contact-info {
+  background: #111;
+  padding: 60px 44px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-info__title {
+  margin: 0 0 16px;
+  font-size: 22px;
+  letter-spacing: 0.16em;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.contact-info__intro {
+  font-size: 13px;
+  line-height: 1.80;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 100;
+  margin: 0 0 44px;
+}
+
+.contact-info__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.contact-info__item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.contact-info__label {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.contact-info__value {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 100;
+  line-height: 1.65;
+}
+
+.contact-info__divider {
+  margin: 44px 0 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.contact-info__brokerage {
+  margin-top: auto;
+}
+
+.contact-info__brokerage-logo {
+  height: 38px;
+  width: auto;
+  display: block;
+  opacity: 0.65;
+  filter: brightness(0) invert(1);
+}
+
+/* ---- Form Panel (right column) ---- */
+.contact-form-panel {
+  background: #fff;
+  padding: 60px 54px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Override default form styles slightly for this layout */
+.contact-form-panel .contact-form {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 860px) {
+  .contact-page__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-info {
+    padding: 44px 28px;
+  }
+
+  .contact-info__brokerage {
+    margin-top: 44px;
+  }
+
+  .contact-form-panel {
+    padding: 44px 28px;
+  }
+}
+
+
+/* =====================================================
+   Rentals Page — page-scoped styles
+===================================================== */
+
+/* ---- Two-Path Section ---- */
+.rentals-paths {
+  background: #f3efe8;
+  padding: 70px 0;
+}
+
+.rentals-paths__inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.rentals-path {
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  padding-top: 28px;
+}
+
+.rentals-path__num {
+  font-size: 36px;
+  font-weight: 100;
+  letter-spacing: 0.06em;
+  color: rgba(0, 0, 0, 0.20);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.rentals-path__title {
+  font-size: 16px;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #111;
+  margin: 0 0 16px;
+}
+
+.rentals-path__desc {
+  font-size: 13px;
+  line-height: 1.80;
+  color: rgba(0, 0, 0, 0.65);
+  margin: 0 0 24px;
+}
+
+.rentals-path__list {
+  list-style: none;
+  margin: 0 0 32px;
+  padding: 0;
+}
+
+.rentals-path__list li {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(0, 0, 0, 0.60);
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.rentals-path__list li::before {
+  content: "— ";
+  color: rgba(0, 0, 0, 0.30);
+}
+
+/* ---- Inquiry Form Section ---- */
+.rental-inquiry {
+  background: #000;
+  padding: 80px 0;
+}
+
+.rental-inquiry__inner {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.rental-inquiry__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.rental-inquiry__title {
+  font-size: 30px;
+  letter-spacing: 0.12em;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 12px;
+}
+
+.rental-inquiry__sub {
+  font-size: 13px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+}
+
+/* ---- Rental Form ---- */
+.rental-form__type {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  padding: 28px 28px 24px;
+  margin: 0 0 32px;
+}
+
+.rental-form__type-legend {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  padding: 0 8px;
+}
+
+.rental-form__type-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.rental-form__type-option--full {
+  grid-column: 1 / -1;
+  width: calc(50% - 8px);
+  margin: 0 auto;
+}
+
+.rental-form__type-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  cursor: pointer;
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 3px;
+  transition: border-color 0.2s;
+}
+
+.rental-form__type-option:has(input:checked) {
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.rental-form__type-option input[type="radio"] {
+  margin-top: 3px;
+  accent-color: #fff;
+  flex-shrink: 0;
+}
+
+.rental-form__type-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rental-form__type-label strong {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.90);
+}
+
+.rental-form__type-label small {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 300;
+}
+
+/* ---- Form grid (mirrors contact-form styles) ---- */
+.rental-form__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.rental-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rental-form__field--full {
+  grid-column: 1 / -1;
+}
+
+.rental-form__field span {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.50);
+  font-weight: 600;
+}
+
+.rental-form__field input,
+.rental-form__field textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 0;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  resize: vertical;
+}
+
+.rental-form__field input::placeholder,
+.rental-form__field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.20);
+}
+
+.rental-form__field input:focus,
+.rental-form__field textarea:focus {
+  border-bottom-color: rgba(255, 255, 255, 0.65);
+}
+
+.rental-form__btn {
+  margin-top: 36px;
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: #fff;
+  color: #000;
+  font-size: 11px;
+  letter-spacing: 0.20em;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.rental-form__btn:hover {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+/* ---- Notice messages ---- */
+.notice {
+  padding: 16px 20px;
+  margin-bottom: 28px;
+  font-size: 13px;
+  border-radius: 3px;
+}
+
+.notice--success {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.notice--error {
+  background: rgba(200, 50, 50, 0.15);
+  color: rgba(255, 180, 180, 0.90);
+  border: 1px solid rgba(200, 50, 50, 0.30);
+}
+
+/* ---- btn--outline (used in path cards) ---- */
+.btn--outline {
+  display: inline-block;
+  padding: 12px 28px;
+  border: 1px solid #111;
+  color: #111;
+  font-size: 10px;
+  letter-spacing: 0.20em;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn--outline:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 860px) {
+  .rentals-paths__inner {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .rental-form__type-options {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .rentals-paths { padding: 54px 0; }
+  .rental-inquiry { padding: 60px 0; }
+
+  .rentals-paths__inner,
+  .rental-inquiry__inner {
+    padding: 0 28px;
+  }
+
+  .rental-form__grid {
+    grid-template-columns: 1fr;
+  }
+}
