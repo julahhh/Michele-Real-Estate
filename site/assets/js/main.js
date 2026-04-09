@@ -103,18 +103,28 @@
 
 
   // =================================================
-  // Contact Form — Background Lead Save
-  // When any contact form is submitted, fire a
-  // background beacon to /save-lead so the lead is
-  // written to leads.json for the admin dashboard.
-  // Formspree handles the actual email delivery.
+  // Contact Form — Lead Save Before Formspree Submit
+  // Intercepts every contact form submit, awaits a
+  // POST to /save-lead (writes to leads.json for the
+  // admin dashboard), then lets the form proceed to
+  // Formspree for email delivery.
+  // Capped at 2 s so a slow server never blocks UX.
   // =================================================
   document.querySelectorAll("form[data-save]").forEach((form) => {
-    form.addEventListener("submit", () => {
-      const url = form.dataset.save;
-      if (url && navigator.sendBeacon) {
-        navigator.sendBeacon(url, new FormData(form));
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const saveUrl = form.dataset.save;
+      if (saveUrl) {
+        const timeout = new Promise((res) => setTimeout(res, 2000));
+        const save    = fetch(saveUrl, {
+          method: "POST",
+          body: new FormData(form),
+        }).catch(() => {});
+        await Promise.race([save, timeout]);
       }
+
+      form.submit();
     });
   });
 

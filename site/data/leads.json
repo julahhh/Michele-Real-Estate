@@ -1,1 +1,12 @@
-[]
+[
+    {
+        "id": "177571291819",
+        "name": "Madison",
+        "email": "j@gmail.com",
+        "phone": "5153248551",
+        "message": "house please",
+        "date": "2026-04-09 05:35:18",
+        "read": false,
+        "inquiry_type": "list"
+    }
+]

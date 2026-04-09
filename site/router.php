@@ -25,6 +25,7 @@ $routes = [
   "/blog" => "/pages/blog.php",
   "/rentals" => "/pages/rentals.php",
   "/contact"    => "/pages/contact.php",
+  "/thank-you"  => "/pages/thank-you.php",
   "/save-lead"  => "/pages/save-lead.php",
 
   // Admin routes

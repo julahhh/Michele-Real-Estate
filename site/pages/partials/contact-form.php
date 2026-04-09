@@ -34,23 +34,13 @@ $form        ??= [];
 $title       = $form['title']       ?? 'Contact Us';
 $sub         = $form['sub']         ?? '';
 $submitText  = $form['submitText']  ?? 'Send Message';
-$redirect    = $form['redirect']    ?? '/contact';
+$redirect    = $form['redirect']    ?? '/thank-you';
 $placeholder = $form['placeholder'] ?? 'Your message...';
-$successMsg  = $form['successMsg']  ?? 'Thanks! Your message has been sent. Michele will be in touch shortly.';
 $errorMsg    = $form['errorMsg']    ?? 'Please fill in your name, a valid email, and a message.';
 
-// Build the absolute _next URL for Formspree to redirect to after submission
+// Build the absolute _next URL Formspree uses to redirect after submission
 $scheme  = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
 $nextUrl = "{$scheme}://{$_SERVER['HTTP_HOST']}{$redirect}";
-if (strpos($nextUrl, '?') === false) {
-    $nextUrl .= '?sent=1';
-} else {
-    $nextUrl .= '&sent=1';
-}
-
-// ── GET state (set by Formspree redirect) ─────────────────────────────────────
-$sent  = !empty($_GET['sent']);
-$error = !empty($_GET['error']) ? $errorMsg : '';
 ?>
 
 <style>
@@ -210,19 +200,10 @@ $error = !empty($_GET['error']) ? $errorMsg : '';
   </div>
 <?php endif; ?>
 
-<?php if ($sent): ?>
-
-  <div class="notice notice--success"><?= htmlspecialchars($successMsg) ?></div>
-
-<?php else: ?>
-
-  <?php if ($error): ?>
-    <div class="notice notice--error"><?= htmlspecialchars($error) ?></div>
-  <?php endif; ?>
-
   <!--
     Form posts directly to Formspree → Michele gets the email.
-    JS beacon below simultaneously saves the lead to leads.json → admin dashboard.
+    Formspree redirects to /thank-you on success.
+    JS beacon simultaneously saves to leads.json → admin dashboard.
   -->
   <form class="rental-form" method="post"
         action="<?= htmlspecialchars($formspreeUrl) ?>"
@@ -311,5 +292,3 @@ $error = !empty($_GET['error']) ? $errorMsg : '';
     <button class="rental-form__btn" type="submit"><?= htmlspecialchars($submitText) ?></button>
 
   </form>
-
-<?php endif; ?>
