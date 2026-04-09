@@ -1,17 +1,26 @@
 <!-- =====================================================
-Contact Modal
-- Reusable popup modal with inquiry type selector.
+  Contact Modal
+  =====================================================
+  Included on every page via footer.php.
+
+  Form posts directly to Formspree → Michele gets the email.
+  JS beacon simultaneously saves to leads.json → admin dashboard.
+
+  To change the Formspree endpoint or save logic:
+  → edit contact-form.php ($formspreeUrl) and save-lead.php
 ===================================================== -->
+
+<?php
+$scheme        = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+$modalNextUrl  = "{$scheme}://{$_SERVER['HTTP_HOST']}/contact?sent=1";
+?>
 
 <div class="modal" id="contactModal" aria-hidden="true">
 
-  <!-- Clicking outside the panel closes the modal -->
   <div class="modal__backdrop" data-modal-close></div>
 
-  <!-- Modal Panel -->
   <div class="modal__panel" role="dialog" aria-modal="true" aria-label="Contact form">
 
-    <!-- Close Button -->
     <button class="modal__close" type="button" aria-label="Close" data-modal-close>✕</button>
 
     <div class="modal-form__header">
@@ -19,7 +28,14 @@ Contact Modal
       <p class="modal-form__sub">Tell us a little about what you need and Michele will reach out within 24 hours.</p>
     </div>
 
-    <form class="rental-form" method="post" action="/contact">
+    <!-- Posts directly to Formspree → email to Michele -->
+    <!-- JS beacon on submit → saves to leads.json for admin dashboard -->
+    <form class="rental-form rental-form--dark" method="post"
+          action="https://formspree.io/f/mlgokgpa"
+          data-save="/save-lead">
+
+      <!-- Formspree redirect after submission -->
+      <input type="hidden" name="_next" value="<?= htmlspecialchars($modalNextUrl) ?>">
 
       <!-- Inquiry type -->
       <fieldset class="rental-form__type">
@@ -89,13 +105,14 @@ Contact Modal
 
         <label class="rental-form__field rental-form__field--full">
           <span>Message</span>
-          <textarea name="message" rows="4" required placeholder="Tell us about what you're looking for..."></textarea>
+          <textarea name="message" rows="4" required
+            placeholder="Tell us about what you're looking for..."></textarea>
         </label>
 
       </div>
 
       <!-- Honeypot -->
-      <input type="text" name="company" tabindex="-1" autocomplete="off" class="hp">
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hp">
 
       <button class="rental-form__btn" type="submit">SEND INQUIRY</button>
 
@@ -106,21 +123,15 @@ Contact Modal
 
 <style>
 /* =====================================================
-   Contact Modal — layout & header styles
-   (rental-form styles live in rentals.php scoped CSS
-    but the modal needs its own dark panel overrides)
+   Contact Modal — dark panel overrides
+   Base rental-form styles live in contact-form.php
 ===================================================== */
 .modal__panel {
   background: #000;
   padding: 48px 40px 40px;
   overflow-y: auto;
 }
-
-.modal-form__header {
-  text-align: center;
-  margin-bottom: 32px;
-}
-
+.modal-form__header { text-align: center; margin-bottom: 32px; }
 .modal-form__title {
   font-size: 24px;
   letter-spacing: 0.12em;
@@ -129,7 +140,6 @@ Contact Modal
   color: #fff;
   margin: 0 0 10px;
 }
-
 .modal-form__sub {
   font-size: 12px;
   line-height: 1.75;
@@ -137,9 +147,25 @@ Contact Modal
   margin: 0;
 }
 
-@media (max-width: 560px) {
-  .modal__panel {
-    padding: 40px 24px 32px;
-  }
+/* Dark field overrides */
+.rental-form--dark .rental-form__type        { border-color: rgba(255,255,255,0.12); }
+.rental-form--dark .rental-form__type-legend { color: rgba(255,255,255,0.45); }
+.rental-form--dark .rental-form__type-option { border-color: rgba(255,255,255,0.10); }
+.rental-form--dark .rental-form__type-option:has(input:checked) {
+  border-color: rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.06);
 }
+.rental-form--dark .rental-form__type-label strong { color: rgba(255,255,255,0.90); }
+.rental-form--dark .rental-form__type-label small  { color: rgba(255,255,255,0.45); }
+.rental-form--dark .rental-form__field span        { color: rgba(255,255,255,0.50); }
+.rental-form--dark .rental-form__field input,
+.rental-form--dark .rental-form__field textarea    { border-bottom-color: rgba(255,255,255,0.20); color: #fff; }
+.rental-form--dark .rental-form__field input:focus,
+.rental-form--dark .rental-form__field textarea:focus { border-bottom-color: rgba(255,255,255,0.65); }
+.rental-form--dark .rental-form__field input::placeholder,
+.rental-form--dark .rental-form__field textarea::placeholder { color: rgba(255,255,255,0.25); }
+.rental-form--dark .rental-form__btn { background: #fff; color: #000; }
+.rental-form--dark .rental-form__btn:hover { background: rgba(255,255,255,0.85); }
+
+@media (max-width: 560px) { .modal__panel { padding: 40px 24px 32px; } }
 </style>

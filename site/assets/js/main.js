@@ -100,4 +100,22 @@
       if (e.key === "Escape") close();
     });
   }
+
+
+  // =================================================
+  // Contact Form — Background Lead Save
+  // When any contact form is submitted, fire a
+  // background beacon to /save-lead so the lead is
+  // written to leads.json for the admin dashboard.
+  // Formspree handles the actual email delivery.
+  // =================================================
+  document.querySelectorAll("form[data-save]").forEach((form) => {
+    form.addEventListener("submit", () => {
+      const url = form.dataset.save;
+      if (url && navigator.sendBeacon) {
+        navigator.sendBeacon(url, new FormData(form));
+      }
+    });
+  });
+
 })();
