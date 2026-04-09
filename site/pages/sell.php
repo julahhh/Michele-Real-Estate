@@ -18,19 +18,13 @@ require ROOT_PATH . "/pages/partials/header.php";
   <!-- =====================================================
     Hero Section
   ===================================================== -->
-  <section class="hero">
-    <div class="hero__bg" aria-hidden="true" style="background-image: url('/assets/img/hero-sunset.jpg');"></div>
+  <section class="hero hero--compact">
+    <div class="hero__bg" aria-hidden="true" style="background-image: url('/assets/img/hero.jpg');"></div>
     <div class="hero__overlay" aria-hidden="true"></div>
-
     <div class="hero__inner">
       <div class="hero__content">
-        <h1 class="hero__title">
-          SELL YOUR<br>
-          <span class="hero__subtitle">HOME WITH CONFIDENCE</span>
-        </h1>
-        <div class="hero__buttons">
-          <a class="btn btn--ghost" href="/contact">GET A FREE VALUATION</a>
-        </div>
+        <h1 class="hero__title">Sell Your Home</h1>
+        <p class="hero__tagline">Get the best possible price for your home with Michele's expert guidance and unmatched local knowledge.</p>
       </div>
     </div>
   </section>

@@ -15,18 +15,13 @@ require ROOT_PATH . "/pages/partials/header.php";
   <!-- =====================================================
     Hero Section
   ===================================================== -->
-  <section class="hero">
+  <section class="hero hero--compact">
     <div class="hero__bg" aria-hidden="true" style="background-image: url('/assets/img/hero.jpg');"></div>
     <div class="hero__overlay" aria-hidden="true"></div>
     <div class="hero__inner">
       <div class="hero__content">
-        <h1 class="hero__title">
-          ABOUT MICHELE<br>
-          <span class="hero__subtitle">YOUR TRUSTED AGENT</span>
-        </h1>
-        <div class="hero__buttons">
-          <a class="btn btn--ghost" href="/contact">CONTACT</a>
-        </div>
+        <h1 class="hero__title">About Michele</h1>
+        <p class="hero__tagline">Your trusted agent.</p>
       </div>
     </div>
   </section>

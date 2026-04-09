@@ -206,6 +206,40 @@ Header / Navigation
   gap: 26px;
 }
 
+/* Compact variant for non-homepage hero sections */
+.hero--compact {
+  min-height: 360px !important;
+  padding-bottom: 2%;
+}
+
+.hero__tagline {
+  margin: 14px 0 0;
+  font-size: 14px;
+  letter-spacing: 0.10em;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 100;
+}
+
+.post-hero__category {
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.60);
+  margin: 0 0 14px;
+}
+
+.post-hero__title {
+  font-size: 36px !important;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 620px) {
+  .post-body { padding: 50px 0 60px; }
+  .post-hero__title { font-size: 26px !important; }
+}
+
 /* ====================================================================================================================================================
   Footer
   ==================================================================================================================================================== */
